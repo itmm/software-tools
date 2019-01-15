@@ -10,3 +10,11 @@ i{copy.x}
 * Erstes Programm kopiert die Eingabe in die Ausgabe
 * Durch Anwahl von `copy.x` im `@include`-Tag kann in die Beschreibung
   von `copy` gewechselt werden
+
+```
+i{ccount.x}
+```
+* Zählt alle Zeichen der Eingabe und gibt die Anzahl aus
+* Durch Anwahl von `ccount.x` im `@include`-Tag kann in die
+  Beschreibung von `ccount` gewechselt werden
+
