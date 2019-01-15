@@ -48,6 +48,10 @@ x{main}
   werden
 * Die Rücksprung-Adresse wird wieder in `r4` gesichert
 * Da das `lr`-Register bei Funktionsaufrufen überschrieben wird
+* Zum Schluss wird der Return-Code auf `0` gesetzt
+* Und an die ursprüngliche Adresse zurück gesprungen
+* Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
+  und das Ergebnis ausgegeben
 
 ```
 d{setup}

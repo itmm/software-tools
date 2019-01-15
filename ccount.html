@@ -114,6 +114,13 @@
  Die Rücksprung-Adresse wird wieder in <code>r4</code> gesichert
 </li><li>
  Da das <code>lr</code>-Register bei Funktionsaufrufen überschrieben wird
+</li><li>
+ Zum Schluss wird der Return-Code auf <code>0</code> gesetzt
+</li><li>
+ Und an die ursprüngliche Adresse zurück gesprungen
+</li><li>
+ Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
+  und das Ergebnis ausgegeben
 </li></ul></div>
 
 <div><div>
