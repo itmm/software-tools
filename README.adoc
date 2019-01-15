@@ -1,0 +1,11 @@
+# Software-Tools
+
+This is an implementation of the Software Tools of Kerningham and Plauer in GNU ARM Assembly.
+
+The german documentation of this project that contains the full source code is available at
+
+https://itmm.github.io/software-tools/
+
+It was automatically generated with the hex tool that is available at
+
+https://github.com/itmm/hex/
