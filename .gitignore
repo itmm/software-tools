@@ -1,4 +1,6 @@
 ccount
 copy
+lcount
+wcount
 *-out.txt
 *-exp.txt
