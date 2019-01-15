@@ -1,7 +1,8 @@
 CPPFLAGS += -Wall -std=c++14
 
-APPs := $(wildcard *.cpp) $(wildcard *.s)
-OBJs := $(APPs:.cpp=) $(APPs:.s=)
+CPP_FILEs := $(wildcard *.cpp)
+S_FILEs := $(wildcard *.s)
+OBJs := $(CPP_FILEs:.cpp=) $(S_FILEs:.s=)
 
 .PHONY: tests clean
 
