@@ -8,5 +8,5 @@
 i{copy.x}
 ```
 * Erstes Programm kopiert die Eingabe in die Ausgabe
-* Durch Anwahl von `copy.x` kann in die Beschreibung von `copy`
-  gewechselt werden
+* Durch Anwahl von `copy.x` im `@include`-Tag kann in die Beschreibung
+  von `copy` gewechselt werden
