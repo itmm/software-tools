@@ -10,6 +10,7 @@ tests: $(OBJs)
 	do \
 		$$script || exit 1; \
 	done
+	@rm -f *-out.txt *-exp.txt
 
 clean:
-	rm $(OBJs)
+	rm -f $(OBJs) *-out.txt *-exp.txt
