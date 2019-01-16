@@ -11,4 +11,3 @@ function run {
 run test-data/empty.txt 0
 run test-data/one-line.txt 7
 run test-data/two-lines.txt 14
-echo "$0 OK"

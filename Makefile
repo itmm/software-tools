@@ -1,18 +1,24 @@
-APPs := $(wildcard *.s)
-OBJs := $(APPs:.s=)
 Xs := $(wildcard *.x)
+SRCs := $(shell hx-files.sh $(Xs))
+EXEs := $(SRCs:.s=)
+DOCs := $(Xs:.x=.html)
+
+CFLAGS += -Wall
 
 .PHONY: tests clean
 
-tests: index.html $(OBJs)
-	@for script in tests/test_*.sh; \
-	do \
-		$$script || exit 1; \
-	done
-	@rm -f *-out.txt *-exp.txt
+tests: $(EXEs)
+	@tests/run-all.sh || exit 1
 
-index.html: $(Xs)
-	hx
+$(SRCs): $(Xs)
+	@echo '  HX'
+	@hx
+	@touch .hx_run
+
+%: %.s
+	@echo '  CC ' $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -f $(OBJs) *-out.txt *-exp.txt
+	@echo '  RM generated files'
+	@rm -f $(SRCs) $(EXEs) $(DOCs) *-out.txt *-exp.txt
