@@ -58,7 +58,7 @@ loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	cmp r0, $'\n
+	cmp r0, s{$'\n}
 	addeq r5, r5, #1
 	b loop
 done:
@@ -73,7 +73,7 @@ d{data entries}
 	G{reply format}
 x{data entries}
 ```
-* Die Ausgabe ist aus dem Programm `countchars` entnommen
+* Die Ausgabe ist aus dem Programm `count-chars` entnommen
 * Dessen Format für die `printf`-Funktion muss hier ebenfalls integriert
   werden
 

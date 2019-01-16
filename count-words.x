@@ -74,7 +74,7 @@ x{loop}
 
 ```
 d{space handling}
-	cmp r0, $s{' } 
+	cmp r0, s{$' } 
 	movle r6, #0
 	ble loop
 x{space handling}
@@ -105,6 +105,6 @@ d{data entries}
 	G{reply format}
 x{data entries}
 ```
-* Wieder wird die Ausgabe von `countchars` übernommen
+* Wieder wird die Ausgabe von `count-chars` übernommen
 * Das verwendete Format muss eingebunden werden
 

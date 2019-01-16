@@ -32,3 +32,10 @@ i{count-words.x}
 * Durch Anwahl von `count-words.x` im `@include`-Tag kann in die
   Beschreibung von `count-words` gewechselt werden
 
+```
+i{un-tab.x}
+```
+* Wandelt Tabulatoren in Freizeichen um
+* Durch Anwahl von `un-tab.x` im `@include`-Tag kann in die Beschreibung
+  von `un-tab` gewechselt werden
+

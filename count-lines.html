@@ -140,15 +140,15 @@
 
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, $<span class="str">'<br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$'\n</span><br/>
 
-<span class="in1"></span><br/>
+<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
 
-<span class="in1"></span><br/>
+<span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 
-<br/>
+<span class="var">done</span>:<br/>
 
-<br/>
+<span class="macro">@end(<span class="name">loop</span>)</span><br/>
 
 </code>
 </div>
@@ -174,7 +174,7 @@
 </div>
 
 <ul><li>
- Die Ausgabe ist aus dem Programm <code>countchars</code> entnommen
+ Die Ausgabe ist aus dem Programm <code>count-chars</code> entnommen
 </li><li>
  Dessen Format für die <code>printf</code>-Funktion muss hier ebenfalls integriert
   werden
