@@ -38,7 +38,7 @@ main:
 
 	e{setup}
 	e{loop}
-	e{reply}
+	G{reply}
 
 	mov r0, #0
 	mov pc, r4
@@ -77,9 +77,17 @@ x{loop}
 
 ```
 d{data entries}
+	G{reply format}
+x{data entries}
+```
+* Es gibt nur ein Datenelement:
+* Das Format der Antwort
+
+```
+D{reply format}
 reply:
 	.string "%d\n"
-x{data entries}
+x{reply format}
 ```
 * Für die Antwort wird die `printf`-Funktion verwendet
 * Diese erhält als ersten Parameter eine Zeichenkette
@@ -87,7 +95,7 @@ x{data entries}
 * `%d` steht für eine ganze Zahl und `\n` für einen Zeilenumbruch
 
 ```
-d{reply}
+D{reply}
 	ldr r0, =reply
 	mov r1, r5
 	bl printf

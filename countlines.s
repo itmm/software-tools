@@ -2,8 +2,10 @@
 	
 	.data
 	
+	
 reply:
 	.string "%d\n"
+
 
 
 	

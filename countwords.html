@@ -2,13 +2,13 @@
 <html lang="de"l>
 <head>
 <meta charset="utf-8">
-<title>countlines - Zeilen der Eingabe zählen</title>
+<title>countwords - Wörter in Eingabe zählen</title>
 <link rel="stylesheet" type="text/css" href="slides/slides.css"></head>
 <body>
-<h1>countlines - Zeilen der Eingabe zählen</h1>
+<h1>countwords - Wörter in Eingabe zählen</h1>
 <div class="slides">
 <div><div>
-<h1>countlines - Zeilen der Eingabe zählen</h1>
+<h1>countwords - Wörter in Eingabe zählen</h1>
 </div>
 
 
@@ -16,13 +16,13 @@
 <div><div>
 <code>
 
-<span class="macro">@globdef(<span class="name">file: countlines.s</span>)</span><br/>
+<span class="macro">@globdef(<span class="name">file: countwords.s</span>)</span><br/>
 
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
 
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
 
-<span class="macro">@end(<span class="name">file: countlines.s</span>)</span><br/>
+<span class="macro">@end(<span class="name">file: countwords.s</span>)</span><br/>
 
 </code>
 </div>
@@ -80,6 +80,8 @@
 
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
 
+<br/>
+
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
@@ -97,6 +99,8 @@
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
 
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
+
+<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
 
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
 
@@ -119,6 +123,14 @@
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, $<span class="str">'<br/>
+
+<span class="in1"></span><br/>
+
+<span class="in1"></span><br/>
+
+<span class="in1"></span><br/>
+
+<span class="in1"></span><br/>
 
 <span class="in1"></span><br/>
 

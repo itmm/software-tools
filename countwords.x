@@ -1,10 +1,10 @@
-# countlines - Zeilen der Eingabe zählen
+# countwords - Wörter in Eingabe zählen
 
 ```
-D{file: countlines.s}
+D{file: countwords.s}
 	e{data}
 	e{code}
-x{file: countlines.s}
+x{file: countwords.s}
 ```
 
 ```
@@ -30,6 +30,7 @@ main:
 	e{setup}
 	e{loop}
 	G{reply}
+
 	mov r0, #0
 	mov pc, r4
 x{main}
@@ -38,6 +39,7 @@ x{main}
 ```
 d{setup}
 	mov r5, #0
+	mov r6, #0
 x{setup}
 ```
 
@@ -47,8 +49,12 @@ loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	cmp r0, $'\n
+	cmp r0, $' 
+	movle r6, #0
+	ble loop
+	cmp r6, #0
 	addeq r5, r5, #1
+	mov r6, #-1
 	b loop
 done:
 x{loop}

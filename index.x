@@ -22,3 +22,7 @@ i{countchars.x}
 i{countlines.x}
 ```
 
+```
+i{countwords.x}
+```
+

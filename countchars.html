@@ -94,7 +94,7 @@
 
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
 
-<span class="in1"></span><span class="macro">@expand(<span class="name">reply</span>)</span><br/>
+<span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
 
 <br/>
 
@@ -175,11 +175,29 @@
 
 <span class="macro">@def(<span class="name">data entries</span>)</span><br/>
 
+<span class="in1"></span><span class="macro">@globmult(<span class="name">reply format</span>)</span><br/>
+
+<span class="macro">@end(<span class="name">data entries</span>)</span><br/>
+
+</code>
+</div>
+
+<ul><li>
+ Es gibt nur ein Datenelement:
+</li><li>
+ Das Format der Antwort
+</li></ul></div>
+
+<div><div>
+<code>
+
+<span class="macro">@globdef(<span class="name">reply format</span>)</span><br/>
+
 <span class="var">reply</span>:<br/>
 
 <span class="in1"></span>.<span class="var">string</span> <span class="str">"%d\n"</span><br/>
 
-<span class="macro">@end(<span class="name">data entries</span>)</span><br/>
+<span class="macro">@end(<span class="name">reply format</span>)</span><br/>
 
 </code>
 </div>
@@ -197,7 +215,7 @@
 <div><div>
 <code>
 
-<span class="macro">@def(<span class="name">reply</span>)</span><br/>
+<span class="macro">@globdef(<span class="name">reply</span>)</span><br/>
 
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r0</span>, =<span class="var">reply</span><br/>
 
