@@ -18,3 +18,7 @@ i{countchars.x}
 * Durch Anwahl von `countchars.x` im `@include`-Tag kann in die
   Beschreibung von `countchars` gewechselt werden
 
+```
+i{countlines.x}
+```
+
