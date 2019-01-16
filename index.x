@@ -12,7 +12,7 @@ i{copy.x}
   von `copy` gewechselt werden
 
 ```
-i{ccount.x}
+i{countchars.x}
 ```
 * Zählt alle Zeichen der Eingabe und gibt die Anzahl aus
 * Durch Anwahl von `ccount.x` im `@include`-Tag kann in die

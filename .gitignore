@@ -1,6 +1,6 @@
-ccount
 copy
-lcount
-wcount
+countchars
+countlines
+countwords
 *-out.txt
 *-exp.txt

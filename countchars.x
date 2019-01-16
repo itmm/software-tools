@@ -4,10 +4,10 @@
   und Ausgabe zu Hilfe genommen
 
 ```
-D{file: ccount.s}
+D{file: countchars.s}
 	e{data}
 	e{code}
-x{file: ccount.s}
+x{file: countchars.s}
 ```
 * Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
   es noch einen Datenblock

@@ -3,9 +3,9 @@
 function run {
 	file=$1
 	expected=$2
-	echo $expected >lcount-exp.txt
-	./lcount <$file >lcount-out.txt
-	diff lcount-exp.txt lcount-out.txt || exit 1
+	echo $expected >countlines-exp.txt
+	./countlines <$file >countlines-out.txt
+	diff countlines-exp.txt countlines-out.txt || exit 1
 }
 
 run test-data/empty.txt 0
