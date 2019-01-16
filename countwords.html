@@ -11,8 +11,13 @@
 <h1>countwords - Wörter in Eingabe zählen</h1>
 </div>
 
+<ul><li>
+ Zählt alle Wörter der Eingabe
+</li><li>
+ Ein Wort ist eine Kette von Zeichen, die durch Freizeichen, Tabs oder
+  Zeilenumbrüche separiert werden
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -27,8 +32,10 @@
 </code>
 </div>
 
+<ul><li>
+ Wieder eine Aufteilung in Daten und Code
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -43,8 +50,10 @@
 </code>
 </div>
 
+<ul><li>
+ Die Daten enthalten Einträge
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -59,8 +68,10 @@
 </code>
 </div>
 
+<ul><li>
+ Und der Code besteht nur aus der <code>main</code>-Funktion
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -91,8 +102,13 @@
 </code>
 </div>
 
+<ul><li>
+ Das Rücksprung-Register wird gesichert
+</li><li>
+ Und die drei Schritte Setup, Zeichen lesen und Ausgabe werden
+  abgearbeitet
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -107,8 +123,15 @@
 </code>
 </div>
 
+<ul><li>
+ Diesmal werden zwei Register verwendet
+</li><li>
+ <code>r5</code> ist wieder der Zähler
+</li><li>
+ <code>r6</code> signalisiert mit einem Wert ungleich <code>0</code>, dass das letzte Zeichen
+  Teil eines Wortes war
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -122,29 +145,84 @@
 
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, $<span class="str">'<br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">space handling</span>)</span><br/>
 
-<span class="in1"></span><br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">word handling</span>)</span><br/>
 
-<span class="in1"></span><br/>
+<span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 
-<span class="in1"></span><br/>
+<span class="var">done</span>:<br/>
 
-<span class="in1"></span><br/>
-
-<span class="in1"></span><br/>
-
-<span class="in1"></span><br/>
-
-<br/>
-
-<br/>
+<span class="macro">@end(<span class="name">loop</span>)</span><br/>
 
 </code>
 </div>
 
+<ul><li>
+ Die Schleife wird wieder beendet, wenn das Ende erreicht ist
+</li><li>
+ Diesmal werden zuerst Freizeichen behandelt
+</li><li>
+ Danach werden Wort-Zeichen behandelt
+</li></ul></div>
 
+<div><div>
+<code>
+
+<span class="macro">@def(<span class="name">space handling</span>)</span><br/>
+
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, $<span class="str">' </span> <br/>
+
+<span class="in1"></span><span class="var">movle</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
+
+<span class="in1"></span><span class="var">ble</span> <span class="var">loop</span><br/>
+
+<span class="macro">@end(<span class="name">space handling</span>)</span><br/>
+
+</code>
 </div>
+
+<ul><li>
+ Das aktuelle Zeichen wird mit dem Freizeichen verglichen
+</li><li>
+ Wenn es kleiner oder gleich ist, dann ist es nicht Teil eines Wortes
+</li><li>
+ Die Wort-Markierung wird gelöscht
+</li><li>
+ Und die Schleife neu durchlaufen
+</li><li>
+ Durch das <code>le</code> werden diese beiden Befehle nur für Zeichen ausgeführt,
+  die nicht Teil eines Wortes sind
+</li></ul></div>
+
+<div><div>
+<code>
+
+<span class="macro">@def(<span class="name">word handling</span>)</span><br/>
+
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
+
+<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
+
+<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #-<span class="num">1</span><br/>
+
+<span class="macro">@end(<span class="name">word handling</span>)</span><br/>
+
+</code>
+</div>
+
+<ul><li>
+ Wenn der Code an diese Stelle kommt, dann ist das aktuelle Zeichen
+  Teil eines Worts
+</li><li>
+ Wenn das vorherige Zeichen nicht Teil eines Wortes war, dann ist ein
+  neues Wort gefunden
+</li><li>
+ Und der Zähler wird erhöht
+</li><li>
+ Die Wort-Markierung kann in jedem Fall gesetzt werden
+</li></ul></div>
+
 <div><div>
 <code>
 
@@ -157,4 +235,9 @@
 </code>
 </div>
 
+<ul><li>
+ Wieder wird die Ausgabe von <code>countchars</code> übernommen
+</li><li>
+ Das verwendete Format muss eingebunden werden
+</li></ul></div>
 

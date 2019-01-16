@@ -13,7 +13,6 @@ tests: $(EXEs)
 $(SRCs): $(Xs)
 	@echo '  HX'
 	@hx
-	@touch .hx_run
 
 %: %.s
 	@echo '  CC ' $@
