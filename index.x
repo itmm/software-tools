@@ -46,3 +46,7 @@ i{re-tab.x}
 * Durch Anwahl von `re-tab.x` im `@include`-Tag kann in die Beschreibung
   von `re-tab` gewechselt werden
 
+```
+i{crypt.x}
+```
+

@@ -4,5 +4,6 @@ count-lines
 count-words
 un-tab
 re-tab
+crypt
 *-out.txt
 *-exp.txt
