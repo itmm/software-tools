@@ -1,6 +1,6 @@
 # Software-Tools
 
-This is an implementation of the Software Tools of Kerningham and Plauer in GNU ARM Assembly.
+This is an implementation of the Software Tools of Kerningham and Plauger in GNU ARM Assembly.
 
 The german documentation of this project that contains the full source code is available at
 
