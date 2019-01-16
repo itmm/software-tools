@@ -42,4 +42,7 @@ i{un-tab.x}
 ```
 i{re-tab.x}
 ```
+* Wandelt Freizeichen in Tabulatoren um
+* Durch Anwahl von `re-tab.x` im `@include`-Tag kann in die Beschreibung
+  von `re-tab` gewechselt werden
 
