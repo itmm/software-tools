@@ -1,11 +1,11 @@
-# countlines - Zeilen der Eingabe zählen
+# count-lines - Zeilen der Eingabe zählen
 * Zählt alle Zeilen der Eingabe
 
 ```
-D{file: countlines.s}
+D{file: count-lines.s}
 	e{data}
 	e{code}
-x{file: countlines.s}
+x{file: count-lines.s}
 ```
 * Auch hier besteht das Programm aus einem Datenblock
 * Und einem Code-Block

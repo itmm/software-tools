@@ -1,6 +1,6 @@
 copy
-countchars
-countlines
-countwords
+count-chars
+count-lines
+count-words
 *-out.txt
 *-exp.txt

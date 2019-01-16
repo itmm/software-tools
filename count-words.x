@@ -1,13 +1,13 @@
-# countwords - Wörter in Eingabe zählen
+# count-words - Wörter in Eingabe zählen
 * Zählt alle Wörter der Eingabe
 * Ein Wort ist eine Kette von Zeichen, die durch Freizeichen, Tabs oder
   Zeilenumbrüche separiert werden
 
 ```
-D{file: countwords.s}
+D{file: count-words.s}
 	e{data}
 	e{code}
-x{file: countwords.s}
+x{file: count-words.s}
 ```
 * Wieder eine Aufteilung in Daten und Code
 

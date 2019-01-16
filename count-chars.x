@@ -1,13 +1,13 @@
-# countchars - Zeichen zählen
+# count-chars - Zeichen zählen
 * Dieses Programm zählt alle Zeichen in der Eingabe
 * Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
   und Ausgabe zu Hilfe genommen
 
 ```
-D{file: countchars.s}
+D{file: count-chars.s}
 	e{data}
 	e{code}
-x{file: countchars.s}
+x{file: count-chars.s}
 ```
 * Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
   es noch einen Datenblock

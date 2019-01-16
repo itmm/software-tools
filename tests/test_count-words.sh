@@ -3,9 +3,9 @@
 function run {
 	file=$1
 	expected=$2
-	echo $expected >countwords-exp.txt
-	./countwords <$file >countwords-out.txt
-	diff countwords-exp.txt countwords-out.txt || exit 1
+	echo $expected >count-words-exp.txt
+	./count-words <$file >count-words-out.txt
+	diff count-words-exp.txt count-words-out.txt || exit 1
 }
 
 run test-data/empty.txt 0

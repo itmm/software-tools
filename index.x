@@ -12,17 +12,23 @@ i{copy.x}
   von `copy` gewechselt werden
 
 ```
-i{countchars.x}
+i{count-chars.x}
 ```
 * Zählt alle Zeichen der Eingabe und gibt die Anzahl aus
-* Durch Anwahl von `countchars.x` im `@include`-Tag kann in die
-  Beschreibung von `countchars` gewechselt werden
+* Durch Anwahl von `count-chars.x` im `@include`-Tag kann in die
+  Beschreibung von `count-chars` gewechselt werden
 
 ```
-i{countlines.x}
+i{count-lines.x}
 ```
+* Zählt alle Zeilen der Eingabe und gibt die Anzahl aus
+* Durch Anwahl von `count-lines.x` im `@include`-Tag kann in die
+  Beschreibung von `count-lines` gewechselt werden
 
 ```
-i{countwords.x}
+i{count-words.x}
 ```
+* Zählt alle Wörter der Eingabe und gibt die Anzahl aus
+* Durch Anwahl von `count-words.x` im `@include`-Tag kann in die
+  Beschreibung von `count-words` gewechselt werden
 
