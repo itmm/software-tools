@@ -32,7 +32,7 @@ loop:
 	cmp r0, #0
 	blt done
 	e{expand tab}
-	e{no tab}
+	G{no tab}
 	b loop
 done:
 x{loop}
@@ -64,7 +64,7 @@ x{expand tab}
 * Und das nächste Zeichen gelesen
 
 ```
-d{no tab}
+D{no tab}
 	bl f{putchar}
 
 	subs r5, r5, #1

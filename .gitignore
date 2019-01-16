@@ -3,5 +3,6 @@ count-chars
 count-lines
 count-words
 un-tab
+re-tab
 *-out.txt
 *-exp.txt

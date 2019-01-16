@@ -39,3 +39,7 @@ i{un-tab.x}
 * Durch Anwahl von `un-tab.x` im `@include`-Tag kann in die Beschreibung
   von `un-tab` gewechselt werden
 
+```
+i{re-tab.x}
+```
+
