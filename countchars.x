@@ -1,4 +1,4 @@
-# ccount - Zeichen zählen
+# countchars - Zeichen zählen
 * Dieses Programm zählt alle Zeichen in der Eingabe
 * Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
   und Ausgabe zu Hilfe genommen

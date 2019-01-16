@@ -15,6 +15,6 @@ i{copy.x}
 i{countchars.x}
 ```
 * Zählt alle Zeichen der Eingabe und gibt die Anzahl aus
-* Durch Anwahl von `ccount.x` im `@include`-Tag kann in die
-  Beschreibung von `ccount` gewechselt werden
+* Durch Anwahl von `countchars.x` im `@include`-Tag kann in die
+  Beschreibung von `countchars` gewechselt werden
 
