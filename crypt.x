@@ -31,7 +31,7 @@ x{crypt}
 * Der Stack wird nach `r4` gesichert und Zeiger auf die Argumente auf
   den Stack gelegt
 * Diese können mit jedem Zeichen der Eingabe weiter geschoben werden
-* Nach der Schleife wird es wieder zurückgesetzt
+* Nach der Schleife wird der Stack wieder zurückgesetzt
 
 ```
 d{loop}
@@ -47,24 +47,28 @@ x{loop}
 ```
 * In der Schleife werden die Zeichen gelesen
 * Jedes Zeichen wird für sich separat verschlüsselt
+* Das verschlüsselte Zeichen muss in `r0` abgelegt werden
 
 ```
 d{copy args on stack}
 	mov r5, r1
 	add r1, r1, #4
+
 args_loop:
 	subs r0, r0, #1
 	ble end_of_args_loop
+
 	ldr r2, [r1]
 	stmfd sp!, {r2}
 	add r1, r1, #4
 	b args_loop
+
 end_of_args_loop:
 x{copy args on stack}
 ```
+* Ein Zeiger auf die Argument-Liste wird in `r5` gesichert
 * Das erste Argument ist der Name des Programms
-* Ein Zeiger auf das erste wirkliche Argument wird gesichert
-* Dann werden die Zeiger auf die Argumente auf den Stapel geschoben
+* Alle weiteren Argumente werden auf den Stapel geschoben
 
 ```
 d{encrypt char}
@@ -72,11 +76,13 @@ d{encrypt char}
 crypt_loop:
 	cmp r1, r4
 	beq end_of_crypt_loop
+
 	ldr r2, [r1]
 	e{encrypt with key}
 	str r2, [r1]
 	add r1, r1, #4
 	b crypt_loop
+
 end_of_crypt_loop:
 x{encrypt char}
 ```

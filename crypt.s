@@ -8,13 +8,16 @@ main:
 	
 	mov r5, r1
 	add r1, r1, #4
+
 args_loop:
 	subs r0, r0, #1
 	ble end_of_args_loop
+
 	ldr r2, [r1]
 	stmfd sp!, {r2}
 	add r1, r1, #4
 	b args_loop
+
 end_of_args_loop:
 
 	
@@ -27,6 +30,7 @@ loop:
 crypt_loop:
 	cmp r1, r4
 	beq end_of_crypt_loop
+
 	ldr r2, [r1]
 	
 	ldrb r3, [r2]
@@ -49,6 +53,7 @@ valid_ch:
 	str r2, [r1]
 	add r1, r1, #4
 	b crypt_loop
+
 end_of_crypt_loop:
 
 	bl putchar
