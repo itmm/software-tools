@@ -8,6 +8,7 @@ function run {
 }
 
 run test-data/empty.txt test-data/empty.txt
+run test-data/newline.txt test-data/newline.txt
 run test-data/two-lines.txt test-data/two-lines.txt
 run test-data/untabbed.txt test-data/tabbed.txt
 run test-data/untabbed-col.txt test-data/tabbed-col.txt

@@ -9,5 +9,6 @@ function run {
 }
 
 run test-data/empty.txt 0
+run test-data/newline.txt 0
 run test-data/one-line.txt 2
 run test-data/two-lines.txt 4

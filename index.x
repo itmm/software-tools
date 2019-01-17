@@ -47,6 +47,11 @@ i{re-tab.x}
   von `re-tab` gewechselt werden
 
 ```
+i{echo.x}
+```
+* Gibt alle Argumente aus
+
+```
 i{crypt.x}
 ```
 

@@ -4,6 +4,7 @@ count-lines
 count-words
 un-tab
 re-tab
+echo
 crypt
 *-out.txt
 *-exp.txt
