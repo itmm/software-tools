@@ -13,6 +13,11 @@
 
 <ul><li>
  Verschlüsselt die Eingabe
+</li><li>
+ Dies Schlüssel werden als Argumente übergeben
+</li><li>
+ Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv
+  oder-verknüpft
 </li></ul></div>
 
 <div><div>
@@ -26,17 +31,15 @@
 
 <span class="fn">main</span>:<br/>
 
-<span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
+<span class="in1"></span><span class="var">stmfd</span> <span class="var">sp</span>!, {<span class="var">lr</span>}<br/>
 
-<span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
-<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
-<span class="var">done</span>:<br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">crypt</span>)</span><br/>
 
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 
-<span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
+<span class="in1"></span><span class="var">ldmfd</span> <span class="var">sp</span>!, {<span class="var">lr</span>}<br/>
+
+<span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">lr</span><br/>
 
 <span class="macro">@end(<span class="name">file: crypt.s</span>)</span><br/>
 
@@ -45,34 +48,39 @@
 
 <ul><li>
  Der ausführbare Bereich besteht nur aus der <code>main</code>-Funktion
+</li><li>
+ Diesmal wird die Rücksprung-Adresse auf dem Stack gesichert
+</li><li>
+ Und von dort wieder hergestellt
 </li></ul></div>
 
 <div><div>
 <code>
 
-<span class="macro">@def(<span class="name">setup</span>)</span><br/>
+<span class="macro">@def(<span class="name">crypt</span>)</span><br/>
 
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">2</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">sp</span><br/>
 
-<span class="in1"></span><span class="var">bne</span> <span class="var">copy_loop</span><br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">copy args on stack</span>)</span><br/>
 
-<span class="in1"></span><span class="var">ldr</span> <span class="var">r5</span>, [<span class="var">r1</span>, #<span class="num">4</span>]<br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
 
-<span class="in1"></span><span class="var">ldrb</span> <span class="var">r2</span>, [<span class="var">r5</span>]<br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">sp</span>, <span class="var">r4</span><br/>
 
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r2</span>, #<span class="num">0</span><br/>
-
-<span class="in1"></span><span class="var">beq</span> <span class="var">copy_loop</span><br/>
-
-<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, <span class="var">r5</span><br/>
-
-<span class="macro">@end(<span class="name">setup</span>)</span><br/>
+<span class="macro">@end(<span class="name">crypt</span>)</span><br/>
 
 </code>
 </div>
 
+<ul><li>
+ Der Stack wird nach <code>r4</code> gesichert und Zeiger auf die Argumente auf
+  den Stack gelegt
+</li><li>
+ Diese können mit jedem Zeichen der Eingabe weiter geschoben werden
+</li><li>
+ Nach der Schleife wird es wieder zurückgesetzt
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -86,51 +94,176 @@
 
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 
-<span class="in1"></span><span class="var">ldrb</span> <span class="var">r1</span>, [<span class="var">r6</span>], #<span class="num">1</span><br/>
-
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r1</span>, #<span class="num">0</span><br/>
-
-<span class="in1"></span><span class="var">bne</span> <span class="var">no_reset</span><br/>
-
-<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, <span class="var">r5</span><br/>
-
-<span class="in1"></span><span class="var">ldrb</span> <span class="var">r1</span>, [<span class="var">r6</span>], #<span class="num">1</span><br/>
-
-<span class="var">no_reset</span>:<br/>
-
-<span class="in1"></span><span class="var">eor</span> <span class="var">r0</span>, <span class="var">r0</span>, <span class="var">r1</span><br/>
+<span class="in1"></span><span class="macro">@expand(<span class="name">encrypt char</span>)</span><br/>
 
 <span class="in1"></span><span class="var">bl</span> <span class="var">putchar</span><br/>
 
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 
+<span class="var">done</span>:<br/>
+
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
 
 </code>
 </div>
 
+<ul><li>
+ In der Schleife werden die Zeichen gelesen
+</li><li>
+ Jedes Zeichen wird für sich separat verschlüsselt
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
-<span class="macro">@add(<span class="name">loop</span>)</span><br/>
+<span class="macro">@def(<span class="name">copy args on stack</span>)</span><br/>
 
-<span class="var">copy_loop</span>:<br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, <span class="var">r1</span><br/>
 
-<span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
 
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="var">args_loop</span>:<br/>
 
-<span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
+<span class="in1"></span><span class="var">subs</span> <span class="var">r0</span>, <span class="var">r0</span>, #<span class="num">1</span><br/>
 
-<span class="in1"></span><span class="var">bl</span> <span class="var">putchar</span><br/>
+<span class="in1"></span><span class="var">ble</span> <span class="var">end_of_args_loop</span><br/>
 
-<span class="in1"></span><span class="var">b</span> <span class="var">copy_loop</span><br/>
+<span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
 
-<span class="macro">@end(<span class="name">loop</span>)</span><br/>
+<span class="in1"></span><span class="var">stmfd</span> <span class="var">sp</span>!, {<span class="var">r2</span>}<br/>
+
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
+
+<span class="in1"></span><span class="var">b</span> <span class="var">args_loop</span><br/>
+
+<span class="var">end_of_args_loop</span>:<br/>
+
+<span class="macro">@end(<span class="name">copy args on stack</span>)</span><br/>
 
 </code>
 </div>
 
+<ul><li>
+ Das erste Argument ist der Name des Programms
+</li><li>
+ Ein Zeiger auf das erste wirkliche Argument wird gesichert
+</li><li>
+ Dann werden die Zeiger auf die Argumente auf den Stapel geschoben
+</li></ul></div>
+
+<div><div>
+<code>
+
+<span class="macro">@def(<span class="name">encrypt char</span>)</span><br/>
+
+<span class="in1"></span><span class="var">mov</span> <span class="var">r1</span>, <span class="var">sp</span><br/>
+
+<span class="var">crypt_loop</span>:<br/>
+
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r1</span>, <span class="var">r4</span><br/>
+
+<span class="in1"></span><span class="var">beq</span> <span class="var">end_of_crypt_loop</span><br/>
+
+<span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
+
+<span class="in1"></span><span class="macro">@expand(<span class="name">encrypt with key</span>)</span><br/>
+
+<span class="in1"></span><span class="var">str</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
+
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
+
+<span class="in1"></span><span class="var">b</span> <span class="var">crypt_loop</span><br/>
+
+<span class="var">end_of_crypt_loop</span>:<br/>
+
+<span class="macro">@end(<span class="name">encrypt char</span>)</span><br/>
+
+</code>
+</div>
+
+<ul><li>
+ Alle Argumente vom Stapel werden durchgegangen
+</li><li>
+ Der Zeiger auf das Argument wird in <code>r2</code> abgelegt
+</li><li>
+ Und wird nach der Verschlüsselung zurückgespeichert
+</li><li>
+ In der Verschlüsselung muss der Zeiger weiter geschoben werden
+</li></ul></div>
+
+<div><div>
+<code>
+
+<span class="macro">@def(<span class="name">encrypt with key</span>)</span><br/>
+
+<span class="in1"></span><span class="var">ldrb</span> <span class="var">r3</span>, [<span class="var">r2</span>]<br/>
+
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, #<span class="num">0</span><br/>
+
+<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, #<span class="num">1</span><br/>
+
+<span class="in1"></span><span class="var">bne</span> <span class="var">valid_ch</span><br/>
+
+<br/>
+
+<span class="in1"></span><span class="macro">@expand(<span class="name">reset key</span>)</span><br/>
+
+<br/>
+
+<span class="var">valid_ch</span>:<br/>
+
+<span class="in1"></span><span class="var">eor</span> <span class="var">r0</span>, <span class="var">r0</span>, <span class="var">r3</span><br/>
+
+<span class="macro">@end(<span class="name">encrypt with key</span>)</span><br/>
+
+</code>
+</div>
+
+<ul><li>
+ Wenn das aktuelle Zeichen ein Null-Byte ist, wird versucht den
+  Schlüssel zurückzusetzen
+</li><li>
+ Und das erste Zeichen zu verwenden
+</li><li>
+ Ansonsten wird das aktuelle Zeichen benutzt und der Zeiger weiter
+  geschoben
+</li></ul></div>
+
+<div><div>
+<code>
+
+<span class="macro">@def(<span class="name">reset key</span>)</span><br/>
+
+<span class="in1"></span><span class="var">sub</span> <span class="var">r6</span>, <span class="var">r4</span>, <span class="var">r1</span><br/>
+
+<span class="in1"></span><span class="var">add</span> <span class="var">r6</span>, <span class="var">r6</span>, <span class="var">r5</span><br/>
+
+<span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r6</span>]<br/>
+
+<span class="in1"></span><span class="var">ldrb</span> <span class="var">r3</span>, [<span class="var">r2</span>]<br/>
+
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, #<span class="num">0</span><br/>
+
+<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, #<span class="num">1</span><br/>
+
+<span class="macro">@end(<span class="name">reset key</span>)</span><br/>
+
+</code>
+</div>
+
+<ul><li>
+ Zuerst wird in <code>r6</code> abgelegt, wie groß der Abstand zum gespeicherten
+  Stapel-Anfang ist
+</li><li>
+ Das ist <code>4</code> für das erste Argument, <code>8</code> für das zweite und so weiter
+</li><li>
+ Dieser Werte kann zum Start der Argument-Liste addiert werden, um das
+  ursprüngliche Argument zu erhalten
+</li><li>
+ Denn an <code>0</code>-ter Stelle steht dort der Programm-Name
+</li><li>
+ Das erste Zeichen wird verwendet
+</li><li>
+ Und der Zähler erhöht, wenn es nicht schon das letzte Zeichen ist
+</li></ul></div>
 
