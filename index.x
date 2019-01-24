@@ -5,6 +5,10 @@
 * Laufen auf Raspberry Pi 3
 
 ```
+i{hello.x}
+```
+
+```
 i{copy.x}
 ```
 * Erstes Programm kopiert die Eingabe in die Ausgabe

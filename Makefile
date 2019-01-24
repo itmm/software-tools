@@ -1,6 +1,8 @@
 Xs := $(wildcard *.x)
 SRCs := $(shell hx-files.sh $(Xs))
-EXEs := $(SRCs:.s=)
+CSRCs := $(filter %.s, $(SRCs))
+ASRCs := $(filter %.S, $(SRCs))
+EXEs := $(CSRCs:.s=) $(ASRCs:.S=)
 DOCs := $(Xs:.x=.html)
 
 CFLAGS += -Wall
@@ -13,6 +15,10 @@ tests: $(EXEs)
 $(SRCs): $(Xs)
 	@echo '  HX'
 	@hx
+
+%: %.S
+	@echo '  CC ' $@
+	@$(CC) -nostdlib $(CFLAGS) $^ -o $@
 
 %: %.s
 	@echo '  CC ' $@
