@@ -2,91 +2,118 @@
 * Gibt alle Argumente aus
 
 ```
-D{file: echo.s}
+D{file: echo.S}
+	G{symbols}
+	.data
+	e{data}
 	.text
-	.global main
-f{main}:
-	mov r4, lr
-	e{loop}
-	mov r0, #0
-	mov pc, r4
-x{file: echo.s}
+	e{code}
+x{file: echo.S}
 ```
-* Der ausführbare Bereich besteht nur aus der `main`-Funktion
+* Das Programm besteht wieder aus einem Daten-Segment und einem 
+  Code-Segment
+* Die golbale Symbol-Liste wird wiederverwendet
 
 ```
-d{loop}
-	mov r5, r0
-	mov r6, r1
-x{loop}
+d{data}
+	G{buffer}
+x{data}
 ```
-* Die Anzahl der Argumente plus eins `r0` wird in `r5` gesichert
-* Der Zeiger auf die Liste der Argument `r1` wird in `r6` gesichert
-* Die Register `r0` und `r1` können von Funktionsaufrufen verändert
-  werden
 
 ```
-d{next arg}
-	add r6, r6, #4
-	subs r5, r5, #1
-	beq done
-x{next arg}
+d{code}
+	.global _start
+_start:
+	g{init buffer}
+	e{write arguments}
+	e{add newline}
+	G{flush buffer}
+	G{exit}
+x{code}
 ```
-* Die Zähler werden in diesem Fragment weiter gezählt
-* Wenn das Ende erreicht ist, wird zum Ende der Schleife gesprungen
-* Dieser Teil ist als Fragment ausgelagert, da er zweimal verwendet
-  wird
 
 ```
-a{loop}
-	E{next arg}
+D{init buffer}
+	ldr r8, =buffer
+	ldr r9, =buffer_size
+	add r9, r8, r9
+	mov r10, r8
+x{init buffer}
+```
+
+```
+D{flush buffer}
+	sub r0, r10, r8
+	G{write buffer}
+	mov r10, r8
+x{flush buffer}
+```
+
+```
+d{add newline}
+	cmp r10, r9
+	blt space_for_newline
+	G{flush buffer}
+space_for_newline:
+	mov r0, $'\n 
+	strb r0, [r10], #1
+x{add newline}
+```
+
+```
+d{write arguments}
+	ldmfd sp!, {r11}
+	add sp, sp, #4
+	mov r12, #-1
+x{write arguments}
+```
+
+```
+a{write arguments}
 loop:
-	e{write arg}
-	E{next arg}
-	e{write space}
+	subs r11, r11, #1
+	ble finish
+	e{write argument}
 	b loop
-done:
-	e{write newline}
-x{loop}
+finish:
+x{write arguments}
 ```
-* Da bei allen außer dem ersten Argument ein Leerzeichen vor dem
-  Argument ausgegeben werden soll muss zweimal die Zähler angepaßt
-  werden
-* Alternativ könnte in einem weiteren Register ein Flag abgelegt werden
-* Das Fragment wurde vorher definiert, um Endlosschleifen an dieser
-  Stelle zu vermeiden
 
 ```
-d{write arg}
-	ldr r7, [r6]
-write_arg_loop:
-	ldrb r0, [r7], #1
-	cmp r0, #0
-	beq write_arg_end
-	bl f{putchar}
-	b write_arg_loop
-write_arg_end:
-x{write arg}
+d{write argument}
+	cmp r12, #0
+	bne no_space
+	e{add space}
+no_space:
+	mov r12, #0
+x{write argument}
 ```
-* Die Ausgabe erfolgt Zeichen für Zeichen bis das abschließende
-  Null-Byte erreicht ist
-* Alternativ könnten die C-Funktionen `puts` oder `printf` verwendet
-  werden
-* Aber es wird versucht, die Abhängigkeit zur C-Bibliothek zu reduzieren
 
 ```
-d{write space}
-	mov r0, s{$' }
-	bl f{putchar}
-x{write space}
+d{add space}
+	cmp r10, r9
+	blt space_for_space
+	G{flush buffer}
+space_for_space:
+	mov r0, $' 
+	strb r0, [r10], #1
+x{add space}
 ```
-* Gibt ein Leerzeichen aus
 
 ```
-d{write newline}
-	mov r0, s{$'\n}
-	bl f{putchar}
-x{write newline}
+a{write argument}
+	ldmfd sp!, {r12}
+arg_loop:
+	ldrb r14, [r12], #1
+	cmp r14, #0
+	beq finish_arg_loop
+	cmp r10, r9
+	blt space_for_arg
+	G{flush buffer}
+space_for_arg:
+	strb r14, [r10], #1
+	b arg_loop
+finish_arg_loop:
+	mov r12, #0
+x{write argument}
 ```
-* Gibt einen Zeilenumbruch aus
-

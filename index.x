@@ -7,13 +7,23 @@
 ```
 i{hello.x}
 ```
+* Das erste Programm `hello` gibt nur einen festen Text aus
+* Der Link `hello.x` im `@include`-Tag führt zur Beschreibung vom
+  Programm `hello`
 
 ```
 i{copy.x}
 ```
-* Erstes Programm kopiert die Eingabe in die Ausgabe
-* Durch Anwahl von `copy.x` im `@include`-Tag kann in die Beschreibung
-  von `copy` gewechselt werden
+* Das Programm `copy` kopiert die Eingabe in die Ausgabe
+* Der Link `copy.x` im `@include`-Tag führt zur Beschreibung vom
+  Programm `copy`
+
+```
+i{echo.x}
+```
+* Das Programm `echo` gibt alle Argumente aus
+* Der Link `echo.x` im `@include`-Tag führt zur Beschreibung vom
+  Programm `echo`
 
 ```
 i{count-chars.x}
@@ -49,11 +59,6 @@ i{re-tab.x}
 * Wandelt Freizeichen in Tabulatoren um
 * Durch Anwahl von `re-tab.x` im `@include`-Tag kann in die Beschreibung
   von `re-tab` gewechselt werden
-
-```
-i{echo.x}
-```
-* Gibt alle Argumente aus
 
 ```
 i{crypt.x}

@@ -14,7 +14,7 @@ x{file: hello.S}
 
 ```
 d{parts}
-	e{symbols}
+	G{symbols}
 x{parts}
 ```
 * Am Anfang des Programms stehen Symbol-Definitionen
@@ -46,7 +46,7 @@ d{code}
 	.global _start
 _start:
 	e{write}
-	e{exit}
+	G{exit}
 x{code}
 ```
 * Das Programm gibt nur die Nachricht aus
@@ -57,7 +57,7 @@ x{code}
 * Ansonsten stürzt das Programm ab
 
 ```
-d{symbols}
+D{symbols}
 	.equ exit, 1
 	.equ exit_success, 0
 x{symbols}
@@ -68,7 +68,7 @@ x{symbols}
   Ablauf
 
 ```
-d{exit}
+D{exit}
 	mov r7, #exit
 	mov r0, #exit_success
 	swi 0
@@ -96,7 +96,7 @@ x{data}
 * Die Nachricht enthält kein abschließendes Null-Byte
 
 ```
-a{symbols}
+A{symbols}
 	.equ write, 4
 	.equ stdout, 1
 x{symbols}
