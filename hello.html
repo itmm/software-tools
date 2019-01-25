@@ -177,8 +177,16 @@
 </code>
 </div>
 
+<ul><li>
+ Die Trap-Nummer steht in Register <code>r7</code>
+</li><li>
+ Die Argumente des Traps stehen in den Registern <code>r0</code> bis <code>r6</code>
+</li><li>
+ <code>exit</code> hat nur ein Argument
+</li><li>
+ Aus diesem Trap erfolgt kein Rücksprung
+</li></ul></div>
 
-</div>
 </div>
 <h2>Nachricht ausgeben</h2>
 <div class="slides">
@@ -232,8 +240,12 @@
 </code>
 </div>
 
+<ul><li>
+ Die Trap-Nummer für <code>write</code> ist <code>4</code>
+</li><li>
+ Und der offene Datei-Handle für die Standard-Ausgabe ist <code>1</code>
+</li></ul></div>
 
-</div>
 <div><div>
 <code>
 
@@ -254,4 +266,11 @@
 </code>
 </div>
 
+<ul><li>
+ Der <code>write</code>-Trap hat die Ausgabe-Datei als erstes Argument
+</li><li>
+ Das zweite Argument ist der Start der Bytes, die ausgegeben werden
+</li><li>
+ Das dritte Argument ist die Anzahl der Bytes
+</li></ul></div>
 

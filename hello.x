@@ -74,6 +74,10 @@ d{exit}
 	swi 0
 x{exit}
 ```
+* Die Trap-Nummer steht in Register `r7`
+* Die Argumente des Traps stehen in den Registern `r0` bis `r6`
+* `exit` hat nur ein Argument
+* Aus diesem Trap erfolgt kein Rücksprung
 
 ## Nachricht ausgeben
 * Gibt eine feste Nachricht aus
@@ -97,6 +101,8 @@ a{symbols}
 	.equ stdout, 1
 x{symbols}
 ```
+* Die Trap-Nummer für `write` ist `4`
+* Und der offene Datei-Handle für die Standard-Ausgabe ist `1`
 
 ```
 d{write}
@@ -107,4 +113,7 @@ d{write}
 	swi 0
 x{write}
 ```
+* Der `write`-Trap hat die Ausgabe-Datei als erstes Argument
+* Das zweite Argument ist der Start der Bytes, die ausgegeben werden
+* Das dritte Argument ist die Anzahl der Bytes
 
