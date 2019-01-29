@@ -1,6 +1,6 @@
 	exit = 1
-	%ex_code = %0
-	ex_success = 1
+	%ex_code = %r0
+	ex_success = 0
 	write = 4
 	%wr_file = %r0
 	stdout = 1
@@ -10,10 +10,9 @@
 	%trap = %r7
 
 	text
-_start:
 	%trap <- write
 	%wr_file <- stdout
-	%wr_buffer <- %pc + (msg - .)
+	%wr_buffer <- %pc + (msg - . - 8)
 	%wr_len <- msg_len
 	trap 0
 
@@ -23,4 +22,4 @@ _start:
 
 msg:
 	bytes "Hallo Welt\n"
-msg_end = . - msg
+msg_len = . - msg
