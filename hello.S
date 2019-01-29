@@ -11,22 +11,13 @@
 	.equ stdin, 0
 
 
-	.data
-	
-message:
-	.ascii "Hallo Welt\n"
-	.equ message_size, . - message
-
-
-	.text
-	
 	.global _start
 _start:
 	
 	mov r7, #write
 	mov r0, #stdout
-	ldr r1, =message
-	ldr r2, =message_size
+	add r1, pc, #(msg - . - 8)
+	mov r2, #msg_len
 	swi 0
 
 	
@@ -34,5 +25,9 @@ _start:
 	mov r0, #exit_success
 	swi 0
 
+	
+msg:
+	.ascii "Hallo Welt\n"
+	.equ msg_len, . - msg
 
 

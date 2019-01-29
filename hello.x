@@ -23,34 +23,16 @@ x{parts}
 
 ```
 a{parts}
-	.data
-	e{data}
-x{parts}
-```
-* In der Daten-Sektion stehen Daten, die das Programm verwendet
-* Dies können Zahlen oder Texte sein
-* Oder nur ein Speicherbereich, den das Programm während der Laufzeit
-  braucht
-
-```
-a{parts}
-	.text
-	e{code}
-x{parts}
-```
-* Zum Schluss steht das eigentliche Programm
-* in der Text-Sektion
-
-```
-d{code}
 	.global _start
 _start:
 	e{write}
 	G{exit}
-x{code}
+	e{data}
+x{parts}
 ```
 * Das Programm gibt nur die Nachricht aus
 * und beendet sich danach selber
+* Der Text liegt am Ende des Programms
 
 ## Programm beenden
 * Das Programm muss sich mit dem Aufruf des `exit`-Traps beenden
@@ -85,9 +67,9 @@ x{exit}
 
 ```
 d{data}
-message:
+msg:
 	.ascii "Hallo Welt\n"
-	.equ message_size, . - message
+	.equ msg_len, . - msg
 x{data}
 ```
 * In der Daten-Sektion liegt die Nachricht, die das Programm ausgibt
@@ -108,12 +90,13 @@ x{symbols}
 d{write}
 	mov r7, #write
 	mov r0, #stdout
-	ldr r1, =message
-	ldr r2, =message_size
+	add r1, pc, #(msg - . - 8)
+	mov r2, #msg_len
 	swi 0
 x{write}
 ```
 * Der `write`-Trap hat die Ausgabe-Datei als erstes Argument
 * Das zweite Argument ist der Start der Bytes, die ausgegeben werden
+* Dies wird relativ zum Programm-Counter berechnet
 * Das dritte Argument ist die Anzahl der Bytes
 
