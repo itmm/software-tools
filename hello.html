@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>Ein erstes Assembler-Programm</title>
@@ -10,230 +10,167 @@
 <div><div>
 <h1>Ein erstes Assembler-Programm</h1>
 </div>
-
 <ul><li>
- Dieses Kapitel beschreibt ein minimales Assembler-Programm für den
+Dieses Kapitel beschreibt ein minimales Assembler-Programm für den
   Raspberry Pi
 </li><li>
- Dieses Programm gibt einen fester Text aus
+Dieses Programm gibt einen fester Text aus
 </li><li>
- Dabei wird nicht die C-Bibliothek verwendet
+Dabei wird nicht die C-Bibliothek verwendet
 </li><li>
- Sondern nur direkte Aufrufe von Kernel-Funktionen
-</li></ul></div>
-
+Sondern nur direkte Aufrufe von Kernel-Funktionen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: hello.S</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">parts</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: hello.S</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm besteht aus mehreren Teilen
-</li></ul></div>
-
+Das Programm besteht aus mehreren Teilen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">parts</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">parts</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Am Anfang des Programms stehen Symbol-Definitionen
+Am Anfang des Programms stehen Symbol-Definitionen
 </li><li>
- Anstatt von nackten Zahlen verwendet das Programm beschreibende Namen
+Anstatt von nackten Zahlen verwendet das Programm beschreibende Namen
 </li><li>
- und ist so verständlicher
-</li></ul></div>
-
+und ist so verständlicher
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@add(<span class="name">parts</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
-
 <span class="var">_start</span>:<br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">write</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">parts</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm gibt nur die Nachricht aus
+Das Programm gibt nur die Nachricht aus
 </li><li>
- und beendet sich danach selber
+und beendet sich danach selber
 </li><li>
- Der Text liegt am Ende des Programms
-</li></ul></div>
-
+Der Text liegt am Ende des Programms
+</li></ul>
+</div>
 </div>
 <h2>Programm beenden</h2>
 <div class="slides">
 <div><div>
 <h2>Programm beenden</h2>
 </div>
-
 <ul><li>
- Das Programm muss sich mit dem Aufruf des <code>exit</code>-Traps beenden
+Das Programm muss sich mit dem Aufruf des <code><span class="var">exit</span></code>-Traps beenden
 </li><li>
- Ansonsten stürzt das Programm ab
-</li></ul></div>
-
+Ansonsten stürzt das Programm ab
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">symbols</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">exit</span>, <span class="num">1</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">exit_success</span>, <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">symbols</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der Exit-Trap hat die Nummer <code>1</code>
+Der Exit-Trap hat die Nummer <code><span class="num">1</span></code>
 </li><li>
- und erwartet den Return-Code im Register <code>r0</code>
+und erwartet den Return-Code im Register <code><span class="var">r0</span></code>
 </li><li>
- Mit dem Return-Code <code>0</code> signalisiert das Programm einen fehlerlosen
+Mit dem Return-Code <code><span class="num">0</span></code> signalisiert das Programm einen fehlerlosen
   Ablauf
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">exit</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">exit</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">exit_success</span><br/>
-
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">exit</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die Trap-Nummer steht in Register <code>r7</code>
+Die Trap-Nummer steht in Register <code><span class="var">r7</span></code>
 </li><li>
- Die Argumente des Traps stehen in den Registern <code>r0</code> bis <code>r6</code>
+Die Argumente des Traps stehen in den Registern <code><span class="var">r0</span></code> bis <code><span class="var">r6</span></code>
 </li><li>
- <code>exit</code> hat nur ein Argument
+<code><span class="var">exit</span></code> hat nur ein Argument
 </li><li>
- Aus diesem Trap erfolgt kein Rücksprung
-</li></ul></div>
-
+Aus diesem Trap erfolgt kein Rücksprung
+</li></ul>
+</div>
 </div>
 <h2>Nachricht ausgeben</h2>
 <div class="slides">
 <div><div>
 <h2>Nachricht ausgeben</h2>
 </div>
-
 <ul><li>
- Gibt eine feste Nachricht aus
+Gibt eine feste Nachricht aus
 </li><li>
- Die Nachricht liegt in der Daten-Sektion
-</li></ul></div>
-
+Die Nachricht liegt in der Daten-Sektion
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="var">msg</span>:<br/>
-
 <span class="in1"></span>.<span class="var">ascii</span> <span class="str">"Hallo Welt\n"</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">msg_len</span>, . - <span class="var">msg</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- In der Daten-Sektion liegt die Nachricht, die das Programm ausgibt
+In der Daten-Sektion liegt die Nachricht, die das Programm ausgibt
 </li><li>
- Der Assembler berechnet die Länge der Nachricht
+Der Assembler berechnet die Länge der Nachricht
 </li><li>
- und hält sie in einem Symbol fest
+und hält sie in einem Symbol fest
 </li><li>
- Die Nachricht enthält kein abschließendes Null-Byte
-</li></ul></div>
-
+Die Nachricht enthält kein abschließendes Null-Byte
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globadd(<span class="name">symbols</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">write</span>, <span class="num">4</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">stdout</span>, <span class="num">1</span><br/>
-
 <span class="macro">@end(<span class="name">symbols</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die Trap-Nummer für <code>write</code> ist <code>4</code>
+Die Trap-Nummer für <code><span class="var">write</span></code> ist <code><span class="num">4</span></code>
 </li><li>
- Und der offene Datei-Handle für die Standard-Ausgabe ist <code>1</code>
-</li></ul></div>
-
+Und der offene Datei-Handle für die Standard-Ausgabe ist <code><span class="num">1</span></code>
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">write</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">write</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdout</span><br/>
-
 <span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">pc</span>, #(<span class="var">msg</span> - . - <span class="num">8</span>)<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r2</span>, #<span class="var">msg_len</span><br/>
-
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">write</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der <code>write</code>-Trap hat die Ausgabe-Datei als erstes Argument
+Der <code><span class="var">write</span></code>-Trap hat die Ausgabe-Datei als erstes Argument
 </li><li>
- Das zweite Argument ist der Start der Bytes, die ausgegeben werden
+Das zweite Argument ist der Start der Bytes, die ausgegeben werden
 </li><li>
- Dies wird relativ zum Programm-Counter berechnet
+Dies wird relativ zum Programm-Counter berechnet
 </li><li>
- Das dritte Argument ist die Anzahl der Bytes
-</li></ul></div>
-
+Das dritte Argument ist die Anzahl der Bytes
+</li></ul>
+</div>
+</body>
+</html>

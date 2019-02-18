@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>count-chars - Zeichen zählen</title>
@@ -10,227 +10,153 @@
 <div><div>
 <h1>count-chars - Zeichen zählen</h1>
 </div>
-
 <ul><li>
- Dieses Programm zählt alle Zeichen in der Eingabe
+Dieses Programm zählt alle Zeichen in der Eingabe
 </li><li>
- Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
+Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
   und Ausgabe zu Hilfe genommen
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: count-chars.s</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: count-chars.s</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
+Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
   es noch einen Datenblock
 </li><li>
- Dieser enthält eine Zeichenkette zur Ausgabe von Zahlen
-</li></ul></div>
-
+Dieser enthält eine Zeichenkette zur Ausgabe von Zahlen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">data</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data entries</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die einzelnen Daten liegen in der <code>.data</code>-Sektion
-</li></ul></div>
-
+Die einzelnen Daten liegen in der <code>.<span class="var">data</span></code>-Sektion
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">main</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die ausführbaren Befehle liegen in der <code>.text</code>-Sektion
+Die ausführbaren Befehle liegen in der <code>.<span class="var">text</span></code>-Sektion
 </li><li>
- Es gibt wieder nur eine einzige Funktion <code>main</code>
-</li></ul></div>
-
+Es gibt wieder nur eine einzige Funktion <code><span class="var">main</span></code>
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">main</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
-
 <span class="var">main</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
-
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- <code>main</code> ist global sichtbar und kann so vom Startup-Code aufgerufen
+<code><span class="var">main</span></code> ist global sichtbar und kann so vom Startup-Code aufgerufen
   werden
 </li><li>
- Die Rücksprung-Adresse wird wieder in <code>r4</code> gesichert
+Die Rücksprung-Adresse wird wieder in <code><span class="var">r4</span></code> gesichert
 </li><li>
- Da das <code>lr</code>-Register bei Funktionsaufrufen überschrieben wird
+Da das <code><span class="var">lr</span></code>-Register bei Funktionsaufrufen überschrieben wird
 </li><li>
- Zum Schluss wird der Return-Code auf <code>0</code> gesetzt
+Zum Schluss wird der Return-Code auf <code><span class="num">0</span></code> gesetzt
 </li><li>
- Und an die ursprüngliche Adresse zurück gesprungen
+Und an die ursprüngliche Adresse zurück gesprungen
 </li><li>
- Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
+Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
   und das Ergebnis ausgegeben
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- In einem weiteren Register zählt das Programm die Anzahl der gelesenen
+In einem weiteren Register zählt das Programm die Anzahl der gelesenen
   Zeichen
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-
 <span class="in1"></span><span class="var">add</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">done</span>:<br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- In der Schleife werden Zeichen gelesen, bis das Ende erreicht ist
+In der Schleife werden Zeichen gelesen, bis das Ende erreicht ist
 </li><li>
- Bei jedem Zeichen wird das Register <code>r5</code> um <code>1</code> erhöht
-</li></ul></div>
-
+Bei jedem Zeichen wird das Register <code><span class="var">r5</span></code> um <code><span class="num">1</span></code> erhöht
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data entries</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply format</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data entries</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Es gibt nur ein Datenelement:
+Es gibt nur ein Datenelement:
 </li><li>
- Das Format der Antwort
-</li></ul></div>
-
+Das Format der Antwort
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">reply format</span>)</span><br/>
-
 <span class="var">reply</span>:<br/>
-
 <span class="in1"></span>.<span class="var">string</span> <span class="str">"%d\n"</span><br/>
-
 <span class="macro">@end(<span class="name">reply format</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Für die Antwort wird die <code>printf</code>-Funktion verwendet
+Für die Antwort wird die <code><span class="var">printf</span></code>-Funktion verwendet
 </li><li>
- Diese erhält als ersten Parameter eine Zeichenkette
+Diese erhält als ersten Parameter eine Zeichenkette
 </li><li>
- Diese beschreibt, was wie ausgegeben werden soll
+Diese beschreibt, was wie ausgegeben werden soll
 </li><li>
- <code>%d</code> steht für eine ganze Zahl und <code>\n</code> für einen Zeilenumbruch
-</li></ul></div>
-
+<code>%<span class="var">d</span></code> steht für eine ganze Zahl und <code>\<span class="var">n</span></code> für einen Zeilenumbruch
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">reply</span>)</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r0</span>, =<span class="var">reply</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r1</span>, <span class="var">r5</span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="var">printf</span><br/>
-
 <span class="macro">@end(<span class="name">reply</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Für <code>printf</code> wird das Format im Register <code>r0</code> erwartet
+Für <code><span class="var">printf</span></code> wird das Format im Register <code><span class="var">r0</span></code> erwartet
 </li><li>
- Und die Zahl im Register <code>r1</code>
-</li></ul></div>
-
+Und die Zahl im Register <code><span class="var">r1</span></code>
+</li></ul>
+</div>
+</body>
+</html>

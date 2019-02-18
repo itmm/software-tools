@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>copy</title>
@@ -10,284 +10,195 @@
 <div><div>
 <h1>copy</h1>
 </div>
-
 <ul><li>
- Kopiert Eingabe in Ausgabe
+Kopiert Eingabe in Ausgabe
 </li><li>
- Um das Programm einfach zu halten, werden Ein- und Ausgaben über
+Um das Programm einfach zu halten, werden Ein- und Ausgaben über
   C-Funktionen ausgeführt
 </li><li>
- Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
+Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
   Ende der Eingabe erreicht ist
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: copy.S</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">data</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: copy.S</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
-  Programm <code>hello</code>
+Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
+  Programm <code><span class="var">hello</span></code>
 </li><li>
- Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
-</li></ul></div>
-
+Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
-
 <span class="fn">_start</span>:<br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">copy</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm kopiert die gesamte Standard-Eingabe in die
+Das Programm kopiert die gesamte Standard-Eingabe in die
   Standard-Ausgabe
 </li><li>
- Danach beendet sich das Programm
-</li></ul></div>
-
+Danach beendet sich das Programm
+</li></ul>
+</div>
 </div>
 <h1>Kopierschleife</h1>
 <div class="slides">
 <div><div>
 <h1>Kopierschleife</h1>
 </div>
-
 <ul><li>
- In der Kopierschleife wird ein Block an Daten geladen und danach
+In der Kopierschleife wird ein Block an Daten geladen und danach
   geschrieben
 </li><li>
- Das Programm kopiert die gesamte Eingabe blockweise
-</li></ul></div>
-
+Das Programm kopiert die gesamte Eingabe blockweise
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">copy</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <span class="var">finish</span>:<br/>
-
 <span class="macro">@end(<span class="name">copy</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das <code>loop</code>-Fragment implementiert die eigentliche Schleife
+Das <code><span class="var">loop</span></code>-Fragment implementiert die eigentliche Schleife
 </li><li>
- Nachdem das Programm eine Iteration verarbeitet hat, springt es
-  wieder zu <code>loop</code>
+Nachdem das Programm eine Iteration verarbeitet hat, springt es
+  wieder zu <code><span class="var">loop</span></code>
 </li><li>
- Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
-</li></ul></div>
-
+Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">buffer</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Im Daten-Segment hat das Programm einen Buffer definiert
+Im Daten-Segment hat das Programm einen Buffer definiert
 </li><li>
- In diesem legt das Programm gelesene Zeichen ab
-</li></ul></div>
-
+In diesem legt das Programm gelesene Zeichen ab
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">buffer</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">buffer_size</span>, <span class="num">4096</span><br/>
-
 <span class="var">buffer</span>:<br/>
-
 <span class="in1"></span>.<span class="var">space</span> <span class="var">buffer_size</span><br/>
-
 <span class="macro">@end(<span class="name">buffer</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der Buffer hat eine Größe von 4 Kilobyte
+Der Buffer hat eine Größe von 4 Kilobyte
 </li><li>
- Der Assembler legt die Größe im Symbol <code>buffer_size</code> ab
+Der Assembler legt die Größe im Symbol <code><span class="var">buffer_size</span></code> ab
 </li><li>
- Das restliche Programm muss so die aktuelle Größe nicht kennen
+Das restliche Programm muss so die aktuelle Größe nicht kennen
 </li><li>
- sondern arbeitet nur mit dem Symbol <code>buffer_size</code>
-</li></ul></div>
-
+sondern arbeitet nur mit dem Symbol <code><span class="var">buffer_size</span></code>
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globadd(<span class="name">symbols</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">read</span>, <span class="num">3</span><br/>
-
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">stdin</span>, <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">symbols</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der <code>read</code>-Trap hat die Nummer <code>3</code>
+Der <code><span class="var">read</span></code>-Trap hat die Nummer <code><span class="num">3</span></code>
 </li><li>
- Der File-Descriptor für die Standard-Eingabe ist <code>0</code>
-</li></ul></div>
-
+Der File-Descriptor für die Standard-Eingabe ist <code><span class="num">0</span></code>
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globexpand(<span class="name">read buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">write buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">next</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm befüllt den Buffer
+Das Programm befüllt den Buffer
 </li><li>
- und schreibt ihn dann aus
+und schreibt ihn dann aus
 </li><li>
- Wenn das Programm beim Lesen das Ende erkennt, springt es nach
-  <code>finish</code>
+Wenn das Programm beim Lesen das Ende erkennt, springt es nach
+  <code><span class="var">finish</span></code>
 </li><li>
- Danach durchläuft das Programm die Schleife erneut
-</li></ul></div>
-
+Danach durchläuft das Programm die Schleife erneut
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">read buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">read</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdin</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r1</span>, =<span class="var">buffer</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, =<span class="var">buffer_size</span><br/>
-
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">read buffer</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm liest Bytes in den Buffer
-</li></ul></div>
-
+Das Programm liest Bytes in den Buffer
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globadd(<span class="name">read buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">ble</span> <span class="var">finish</span><br/>
-
 <span class="macro">@end(<span class="name">read buffer</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn das Ergebnis kleiner oder gleich <code>0</code> ist, dann ist das Ende
+Wenn das Ergebnis kleiner oder gleich <code><span class="num">0</span></code> ist, dann ist das Ende
   erreicht
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">next</span>)</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="macro">@end(<span class="name">next</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
+Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
   das Programm am Ende der Schleife zur nächsten Iteration zurück
   springen
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">write buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">write</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r2</span>, <span class="var">r0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdout</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r1</span>, =<span class="var">buffer</span><br/>
-
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">write buffer</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm schreibt die befüllten Bytes des Buffers
+Das Programm schreibt die befüllten Bytes des Buffers
 </li><li>
- Die Anzahl der Bytes sichert es als neue Länge bevor das Register
+Die Anzahl der Bytes sichert es als neue Länge bevor das Register
   mit dem File-Descriptor überschrieben wird
-</li></ul></div>
-
+</li></ul>
+</div>
+</body>
+</html>

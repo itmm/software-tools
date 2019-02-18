@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>count-lines - Zeilen der Eingabe zählen</title>
@@ -10,173 +10,113 @@
 <div><div>
 <h1>count-lines - Zeilen der Eingabe zählen</h1>
 </div>
-
 <ul><li>
- Zählt alle Zeilen der Eingabe
-</li></ul></div>
-
+Zählt alle Zeilen der Eingabe
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: count-lines.s</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: count-lines.s</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Auch hier besteht das Programm aus einem Datenblock
+Auch hier besteht das Programm aus einem Datenblock
 </li><li>
- Und einem Code-Block
-</li></ul></div>
-
+Und einem Code-Block
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">data</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data entries</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der Datenblock enthält Einträge
-</li></ul></div>
-
+Der Datenblock enthält Einträge
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">main</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der Code-Block nur die <code>main</code> Funktion
-</li></ul></div>
-
+Der Code-Block nur die <code><span class="var">main</span></code> Funktion
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">main</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
-
 <span class="var">main</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
-
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wie vorher wird die Rücksprung-Adresse gesichert
+Wie vorher wird die Rücksprung-Adresse gesichert
 </li><li>
- Danach der Status initialisiert
+Danach der Status initialisiert
 </li><li>
- Die Zeichen in einer Schleife eingelesen
+Die Zeichen in einer Schleife eingelesen
 </li><li>
- Und zum Schluss die Summe ausgegeben
-</li></ul></div>
-
+Und zum Schluss die Summe ausgegeben
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Zähl-Register wird mit <code>0</code> initialisiert
-</li></ul></div>
-
+Das Zähl-Register wird mit <code><span class="num">0</span></code> initialisiert
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$'\n</span><br/>
-
 <span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">done</span>:<br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- In der Schleife prüft das Programm zuerst, ob das Ende erreicht ist
+In der Schleife prüft das Programm zuerst, ob das Ende erreicht ist
 </li><li>
- Wenn nicht wird getestet, ob das Zeichen ein Zeilenumbruch ist
+Wenn nicht wird getestet, ob das Zeichen ein Zeilenumbruch ist
 </li><li>
- Nur in diesem Fall wird der Zähler erhöht
-</li></ul></div>
-
+Nur in diesem Fall wird der Zähler erhöht
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data entries</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply format</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data entries</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die Ausgabe ist aus dem Programm <code>count-chars</code> entnommen
+Die Ausgabe ist aus dem Programm <code><span class="var">count</span>-<span class="var">chars</span></code> entnommen
 </li><li>
- Dessen Format für die <code>printf</code>-Funktion muss hier ebenfalls integriert
+Dessen Format für die <code><span class="var">printf</span></code>-Funktion muss hier ebenfalls integriert
   werden
-</li></ul></div>
-
+</li></ul>
+</div>
+</body>
+</html>

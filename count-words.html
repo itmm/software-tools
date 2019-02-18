@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>count-words - Wörter in Eingabe zählen</title>
@@ -10,234 +10,157 @@
 <div><div>
 <h1>count-words - Wörter in Eingabe zählen</h1>
 </div>
-
 <ul><li>
- Zählt alle Wörter der Eingabe
+Zählt alle Wörter der Eingabe
 </li><li>
- Ein Wort ist eine Kette von Zeichen, die durch Freizeichen, Tabs oder
+Ein Wort ist eine Kette von Zeichen, die durch Freizeichen, Tabs oder
   Zeilenumbrüche separiert werden
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: count-words.s</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: count-words.s</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wieder eine Aufteilung in Daten und Code
-</li></ul></div>
-
+Wieder eine Aufteilung in Daten und Code
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">data</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data entries</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die Daten enthalten Einträge
-</li></ul></div>
-
+Die Daten enthalten Einträge
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">main</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Und der Code besteht nur aus der <code>main</code>-Funktion
-</li></ul></div>
-
+Und der Code besteht nur aus der <code><span class="var">main</span></code>-Funktion
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">main</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
-
 <span class="var">main</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
-
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Rücksprung-Register wird gesichert
+Das Rücksprung-Register wird gesichert
 </li><li>
- Und die drei Schritte Setup, Zeichen lesen und Ausgabe werden
+Und die drei Schritte Setup, Zeichen lesen und Ausgabe werden
   abgearbeitet
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Diesmal werden zwei Register verwendet
+Diesmal werden zwei Register verwendet
 </li><li>
- <code>r5</code> ist wieder der Zähler
+<code><span class="var">r5</span></code> ist wieder der Zähler
 </li><li>
- <code>r6</code> signalisiert mit einem Wert ungleich <code>0</code>, dass das letzte Zeichen
+<code><span class="var">r6</span></code> signalisiert mit einem Wert ungleich <code><span class="num">0</span></code>, dass das letzte Zeichen
   Teil eines Wortes war
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">space handling</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">word handling</span>)</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">done</span>:<br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Die Schleife wird wieder beendet, wenn das Ende erreicht ist
+Die Schleife wird wieder beendet, wenn das Ende erreicht ist
 </li><li>
- Diesmal werden zuerst Freizeichen behandelt
+Diesmal werden zuerst Freizeichen behandelt
 </li><li>
- Danach werden Wort-Zeichen behandelt
-</li></ul></div>
-
+Danach werden Wort-Zeichen behandelt
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">space handling</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$' </span> <br/>
-
 <span class="in1"></span><span class="var">movle</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">ble</span> <span class="var">loop</span><br/>
-
 <span class="macro">@end(<span class="name">space handling</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das aktuelle Zeichen wird mit dem Freizeichen verglichen
+Das aktuelle Zeichen wird mit dem Freizeichen verglichen
 </li><li>
- Wenn es kleiner oder gleich ist, dann ist es nicht Teil eines Wortes
+Wenn es kleiner oder gleich ist, dann ist es nicht Teil eines Wortes
 </li><li>
- Die Wort-Markierung wird gelöscht
+Die Wort-Markierung wird gelöscht
 </li><li>
- Und die Schleife neu durchlaufen
+Und die Schleife neu durchlaufen
 </li><li>
- Durch das <code>le</code> werden diese beiden Befehle nur für Zeichen ausgeführt,
+Durch das <code><span class="var">le</span></code> werden diese beiden Befehle nur für Zeichen ausgeführt,
   die nicht Teil eines Wortes sind
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">word handling</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #-<span class="num">1</span><br/>
-
 <span class="macro">@end(<span class="name">word handling</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn der Code an diese Stelle kommt, dann ist das aktuelle Zeichen
+Wenn der Code an diese Stelle kommt, dann ist das aktuelle Zeichen
   Teil eines Worts
 </li><li>
- Wenn das vorherige Zeichen nicht Teil eines Wortes war, dann ist ein
+Wenn das vorherige Zeichen nicht Teil eines Wortes war, dann ist ein
   neues Wort gefunden
 </li><li>
- Und der Zähler wird erhöht
+Und der Zähler wird erhöht
 </li><li>
- Die Wort-Markierung kann in jedem Fall gesetzt werden
-</li></ul></div>
-
+Die Wort-Markierung kann in jedem Fall gesetzt werden
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data entries</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply format</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data entries</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wieder wird die Ausgabe von <code>count-chars</code> übernommen
+Wieder wird die Ausgabe von <code><span class="var">count</span>-<span class="var">chars</span></code> übernommen
 </li><li>
- Das verwendete Format muss eingebunden werden
-</li></ul></div>
-
+Das verwendete Format muss eingebunden werden
+</li></ul>
+</div>
+</body>
+</html>

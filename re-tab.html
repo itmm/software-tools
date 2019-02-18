@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>un-tab - Tabulatoren expandieren</title>
@@ -10,267 +10,170 @@
 <div><div>
 <h1>un-tab - Tabulatoren expandieren</h1>
 </div>
-
-
 </div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: re-tab.s</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
-
 <span class="fn">main</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
-
 <span class="macro">@end(<span class="name">file: re-tab.s</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der ausführbare Bereich besteht nur aus der <code>main</code>-Funktion
+Der ausführbare Bereich besteht nur aus der <code><span class="var">main</span></code>-Funktion
 </li><li>
- Vor der Schleife werden die Variablen initialisiert
-</li></ul></div>
-
+Vor der Schleife werden die Variablen initialisiert
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- <code>r5</code> gibt an, wie viele Freizeichen in der aktuellen Spalte
+<code><span class="var">r5</span></code> gibt an, wie viele Freizeichen in der aktuellen Spalte
   ausgegeben werden müssen, wenn ein Tab erweitert wird
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">spaces</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">no tab</span>)</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">done</span>:<br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn die Eingabe zu Ende ist, wird die Schleife verlassen
+Wenn die Eingabe zu Ende ist, wird die Schleife verlassen
 </li><li>
- Zuerst wird auf Leerzeichen geprüft
+Zuerst wird auf Leerzeichen geprüft
 </li><li>
- Ansonsten werden die restlichen Zeichen verarbeitet
+Ansonsten werden die restlichen Zeichen verarbeitet
 </li><li>
- Dieser Teil wird aus dem Programm <code>un-tab</code> kopiert
-</li></ul></div>
-
+Dieser Teil wird aus dem Programm <code><span class="var">un</span>-<span class="var">tab</span></code> kopiert
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">spaces</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$' </span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_space</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">1</span><br/>
-
 <span class="var">space_loop</span>:<br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">space loop</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">write spaces</span>)</span><br/>
-
 <br/>
-
 <span class="var">no_space</span>:<br/>
-
 <span class="macro">@end(<span class="name">spaces</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn kein Leerzeichen gelesen wurde
+Wenn kein Leerzeichen gelesen wurde
 </li><li>
- Dann geht in den Default-Teil
+Dann geht in den Default-Teil
 </li><li>
- Ansonsten zählt <code>r6</code> wie viele Leerzeichen gelesen und noch nicht
+Ansonsten zählt <code><span class="var">r6</span></code> wie viele Leerzeichen gelesen und noch nicht
   ausgegeben wurden
 </li><li>
- Und in der Schleife werden Leerzeichen gelesen und durch Tabulatoren
+Und in der Schleife werden Leerzeichen gelesen und durch Tabulatoren
   ersetzt
 </li><li>
- Überschüssige Leerzeichen müssen danach noch ausgegeben werden
-</li></ul></div>
-
+Überschüssige Leerzeichen müssen danach noch ausgegeben werden
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">space loop</span>)</span><br/>
-
 <span class="in1"></span><span class="var">subs</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_tab_yet</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">write tab</span>)</span><br/>
-
 <br/>
-
 <span class="var">no_tab_yet</span>:<br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">next char</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">space loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn der Spaltenzähler <code>0</code> wird, kann ein Tabulator ausgegeben werden
+Wenn der Spaltenzähler <code><span class="num">0</span></code> wird, kann ein Tabulator ausgegeben werden
 </li><li>
- Andernfalls wird das nächste Zeichen gelesen
+Andernfalls wird das nächste Zeichen gelesen
 </li><li>
- Und die Space-Schleife weiter durchlaufen so lange es sich um ein
+Und die Space-Schleife weiter durchlaufen so lange es sich um ein
   Leerzeichen handelt
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">write tab</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="str">$'\t</span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">putchar</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <span class="macro">@end(<span class="name">write tab</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Ein Tabulator-Zeichen wird ausgegeben
+Ein Tabulator-Zeichen wird ausgegeben
 </li><li>
- Der Spaltenzähler wird aktualisiert
+Der Spaltenzähler wird aktualisiert
 </li><li>
- Und der Zähler der Leerzeichen zurückgesetzt
-</li></ul></div>
-
+Und der Zähler der Leerzeichen zurückgesetzt
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">next char</span>)</span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$' </span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_more_space</span><br/>
-
 <span class="in1"></span><span class="var">add</span> <span class="var">r6</span>, <span class="var">r6</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">space_loop</span><br/>
-
 <br/>
-
 <span class="var">no_more_space</span>:<br/>
-
 <span class="macro">@end(<span class="name">next char</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn das nächste Zeichen kein Leerzeichen ist, wird die Schleife
+Wenn das nächste Zeichen kein Leerzeichen ist, wird die Schleife
   verlassen
 </li><li>
- Sonst wird der Zähler erhöht und die Schleife erneut durchlaufen
-</li></ul></div>
-
+Sonst wird der Zähler erhöht und die Schleife erneut durchlaufen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">write spaces</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, <span class="var">r0</span><br/>
-
 <br/>
-
 <span class="var">write_spaces_loop</span>:<br/>
-
 <span class="in1"></span><span class="var">subs</span> <span class="var">r6</span>, <span class="var">r6</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">end_of_write_spaces</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="str">$' </span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">putchar</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">write_spaces_loop</span><br/>
-
 <br/>
-
 <span class="var">end_of_write_spaces</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="var">r7</span><br/>
-
 <span class="macro">@end(<span class="name">write spaces</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- In <code>r0</code> steht das nächste Zeichen
+In <code><span class="var">r0</span></code> steht das nächste Zeichen
 </li><li>
- Es wird in <code>r7</code> gesichert, da <code>putchar</code> das Register verändert
+Es wird in <code><span class="var">r7</span></code> gesichert, da <code><span class="var">putchar</span></code> das Register verändert
 </li><li>
- Es werden <code>r6</code> viele Leerzeichen ausgegeben
-</li></ul></div>
-
+Es werden <code><span class="var">r6</span></code> viele Leerzeichen ausgegeben
+</li></ul>
+</div>
+</body>
+</html>

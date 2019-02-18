@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>un-tab - Tabulatoren expandieren</title>
@@ -10,172 +10,109 @@
 <div><div>
 <h1>un-tab - Tabulatoren expandieren</h1>
 </div>
-
-
 </div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: un-tab.s</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
-
 <span class="fn">main</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
-
 <span class="macro">@end(<span class="name">file: un-tab.s</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Der ausführbare Bereich besteht nur aus der <code>main</code>-Funktion
+Der ausführbare Bereich besteht nur aus der <code><span class="var">main</span></code>-Funktion
 </li><li>
- Vor der Schleife werden die Variablen initialisiert
-</li></ul></div>
-
+Vor der Schleife werden die Variablen initialisiert
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- <code>r5</code> gibt an, wie viele Freizeichen in der aktuellen Spalte
+<code><span class="var">r5</span></code> gibt an, wie viele Freizeichen in der aktuellen Spalte
   ausgegeben werden müssen, wenn ein Tab erweitert wird
-</li></ul></div>
-
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">getchar</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">expand tab</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">no tab</span>)</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">done</span>:<br/>
-
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn die Eingabe zu Ende ist, wird die Schleife verlassen
+Wenn die Eingabe zu Ende ist, wird die Schleife verlassen
 </li><li>
- Zuerst wird auf einen Tabulator geprüft
+Zuerst wird auf einen Tabulator geprüft
 </li><li>
- Ansonsten werden die restlichen Zeichen verarbeitet
-</li></ul></div>
-
+Ansonsten werden die restlichen Zeichen verarbeitet
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">expand tab</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$'\t</span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_tab</span><br/>
-
 <br/>
-
 <span class="var">tab_loop</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="str">$' </span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">putchar</span><br/>
-
 <span class="in1"></span><span class="var">subs</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">tab_loop</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <br/>
-
 <span class="var">no_tab</span>:<br/>
-
 <span class="macro">@end(<span class="name">expand tab</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Wenn kein Tabulator gelesen wird, dann wird in den Else-Zweig
+Wenn kein Tabulator gelesen wird, dann wird in den Else-Zweig
   gesprungen
 </li><li>
- Es werden so viele Freizeichen ausgegeben, wie der Zähler enthält
+Es werden so viele Freizeichen ausgegeben, wie der Zähler enthält
 </li><li>
- Danach wird der Zähler neu initialisiert
+Danach wird der Zähler neu initialisiert
 </li><li>
- Und das nächste Zeichen gelesen
-</li></ul></div>
-
+Und das nächste Zeichen gelesen
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">no tab</span>)</span><br/>
-
 <span class="in1"></span><span class="var">bl</span> <span class="fn">putchar</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">subs</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">moveq</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$'\n</span><br/>
-
 <span class="in1"></span><span class="var">moveq</span> <span class="var">r5</span>, #<span class="num">8</span><br/>
-
 <span class="macro">@end(<span class="name">no tab</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Sonst wird das Zeichen ausgegeben
+Sonst wird das Zeichen ausgegeben
 </li><li>
- Und der Zähler reduziert
+Und der Zähler reduziert
 </li><li>
- Wenn er auf <code>0</code> fällt wird er neu initialisiert
+Wenn er auf <code><span class="num">0</span></code> fällt wird er neu initialisiert
 </li><li>
- Oder wenn ein Zeilenumbruch gelesen wurde
-</li></ul></div>
-
+Oder wenn ein Zeilenumbruch gelesen wurde
+</li></ul>
+</div>
+</body>
+</html>

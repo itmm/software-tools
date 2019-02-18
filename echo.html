@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de"l>
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <title>echo</title>
@@ -10,261 +10,139 @@
 <div><div>
 <h1>echo</h1>
 </div>
-
 <ul><li>
- Gibt alle Argumente aus
-</li></ul></div>
-
+Gibt alle Argumente aus
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">file: echo.S</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">data</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">text</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">file: echo.S</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
 <ul><li>
- Das Programm besteht wieder aus einem Daten-Segment und einem 
+Das Programm besteht wieder aus einem Daten-Segment und einem 
   Code-Segment
 </li><li>
- Die golbale Symbol-Liste wird wiederverwendet
-</li></ul></div>
-
+Die golbale Symbol-Liste wird wiederverwendet
+</li></ul>
+</div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">buffer</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
-
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
-
 <span class="var">_start</span>:<br/>
-
 <span class="in1"></span><span class="macro">@globexpand(<span class="name">init buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">write arguments</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">add newline</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
-
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">init buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r8</span>, =<span class="var">buffer</span><br/>
-
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r9</span>, =<span class="var">buffer_size</span><br/>
-
 <span class="in1"></span><span class="var">add</span> <span class="var">r9</span>, <span class="var">r8</span>, <span class="var">r9</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r10</span>, <span class="var">r8</span><br/>
-
 <span class="macro">@end(<span class="name">init buffer</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@globdef(<span class="name">flush buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">sub</span> <span class="var">r0</span>, <span class="var">r10</span>, <span class="var">r8</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">write buffer</span>)</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r10</span>, <span class="var">r8</span><br/>
-
 <span class="macro">@end(<span class="name">flush buffer</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">add newline</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_newline</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
-
 <span class="var">space_for_newline</span>:<br/>
-
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, $<span class="str">'<br/>
-
-<span class="in1"></span><br/>
-
-<br/>
-
-</code>
-</div>
-
-
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="var">$</span>'\<span class="var">n</span> <br/>
+<span class="in1"></span><span class="var">strb</span> <span class="var">r0</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
+<span class="macro">@end(<span class="name">add newline</span>)</span><br/>
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">write arguments</span>)</span><br/>
-
 <span class="in1"></span><span class="var">ldmfd</span> <span class="var">sp</span>!, {<span class="var">r11</span>}<br/>
-
 <span class="in1"></span><span class="var">add</span> <span class="var">sp</span>, <span class="var">sp</span>, #<span class="num">4</span><br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r12</span>, #-<span class="num">1</span><br/>
-
 <span class="macro">@end(<span class="name">write arguments</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@add(<span class="name">write arguments</span>)</span><br/>
-
 <span class="var">loop</span>:<br/>
-
 <span class="in1"></span><span class="var">subs</span> <span class="var">r11</span>, <span class="var">r11</span>, #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">ble</span> <span class="var">finish</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">write argument</span>)</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
-
 <span class="var">finish</span>:<br/>
-
 <span class="macro">@end(<span class="name">write arguments</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">write argument</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r12</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_space</span><br/>
-
 <span class="in1"></span><span class="macro">@expand(<span class="name">add space</span>)</span><br/>
-
 <span class="var">no_space</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r12</span>, #<span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">write argument</span>)</span><br/>
-
-</code>
-</div>
-
-
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@def(<span class="name">add space</span>)</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_space</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
-
 <span class="var">space_for_space</span>:<br/>
-
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, $<span class="str">'<br/>
-
-<span class="in1"></span><br/>
-
-<br/>
-
-</code>
-</div>
-
-
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="var">$</span>' <br/>
+<span class="in1"></span><span class="var">strb</span> <span class="var">r0</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
+<span class="macro">@end(<span class="name">add space</span>)</span><br/>
+</code></div>
 </div>
 <div><div>
 <code>
-
 <span class="macro">@add(<span class="name">write argument</span>)</span><br/>
-
 <span class="in1"></span><span class="var">ldmfd</span> <span class="var">sp</span>!, {<span class="var">r12</span>}<br/>
-
 <span class="var">arg_loop</span>:<br/>
-
 <span class="in1"></span><span class="var">ldrb</span> <span class="var">r14</span>, [<span class="var">r12</span>], #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r14</span>, #<span class="num">0</span><br/>
-
 <span class="in1"></span><span class="var">beq</span> <span class="var">finish_arg_loop</span><br/>
-
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
-
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_arg</span><br/>
-
 <span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
-
 <span class="var">space_for_arg</span>:<br/>
-
 <span class="in1"></span><span class="var">strb</span> <span class="var">r14</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
-
 <span class="in1"></span><span class="var">b</span> <span class="var">arg_loop</span><br/>
-
 <span class="var">finish_arg_loop</span>:<br/>
-
 <span class="in1"></span><span class="var">mov</span> <span class="var">r12</span>, #<span class="num">0</span><br/>
-
 <span class="macro">@end(<span class="name">write argument</span>)</span><br/>
-
-</code>
-</div>
-
+</code></div>
+</body>
+</html>
