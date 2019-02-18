@@ -5,44 +5,44 @@
 
 ```
 D{file: count-chars.s}
-	e{data}
-	e{code}
-x{file: count-chars.s}
+	@expand(data)
+	@expand(code)
+@end(file: count-chars.s)
 ```
 * Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
   es noch einen Datenblock
 * Dieser enthält eine Zeichenkette zur Ausgabe von Zahlen
 
 ```
-d{data}
+@def(data)
 	.data
-	e{data entries}
-x{data}
+	@expand(data entries)
+@end(data)
 ```
 * Die einzelnen Daten liegen in der `.data`-Sektion
 
 ```
-d{code}
+@def(code)
 	.text
-	e{main}
-x{code}
+	@expand(main)
+@end(code)
 ```
 * Die ausführbaren Befehle liegen in der `.text`-Sektion
 * Es gibt wieder nur eine einzige Funktion `main`
 
 ```
-d{main}
+@def(main)
 	.global main
 main:
 	mov r4, lr
 
-	e{setup}
-	e{loop}
+	@expand(setup)
+	@expand(loop)
 	G{reply}
 
 	mov r0, #0
 	mov pc, r4
-x{main}
+@end(main)
 ```
 * `main` ist global sichtbar und kann so vom Startup-Code aufgerufen
   werden
@@ -54,15 +54,15 @@ x{main}
   und das Ergebnis ausgegeben
 
 ```
-d{setup}
+@def(setup)
 	mov r5, #0
-x{setup}
+@end(setup)
 ```
 * In einem weiteren Register zählt das Programm die Anzahl der gelesenen
   Zeichen
 
 ```
-d{loop}
+@def(loop)
 loop:
 	bl getchar
 	cmp r0, #0
@@ -70,15 +70,15 @@ loop:
 	add r5, r5, #1
 	b loop
 done:
-x{loop}
+@end(loop)
 ```
 * In der Schleife werden Zeichen gelesen, bis das Ende erreicht ist
 * Bei jedem Zeichen wird das Register `r5` um `1` erhöht
 
 ```
-d{data entries}
+@def(data entries)
 	G{reply format}
-x{data entries}
+@end(data entries)
 ```
 * Es gibt nur ein Datenelement:
 * Das Format der Antwort
@@ -87,7 +87,7 @@ x{data entries}
 D{reply format}
 reply:
 	.string "%d\n"
-x{reply format}
+@end(reply format)
 ```
 * Für die Antwort wird die `printf`-Funktion verwendet
 * Diese erhält als ersten Parameter eine Zeichenkette
@@ -99,7 +99,7 @@ D{reply}
 	ldr r0, =reply
 	mov r1, r5
 	bl printf
-x{reply}
+@end(reply)
 ```
 * Für `printf` wird das Format im Register `r0` erwartet
 * Und die Zahl im Register `r1`

@@ -5,31 +5,31 @@
 D{file: echo.S}
 	G{symbols}
 	.data
-	e{data}
+	@expand(data)
 	.text
-	e{code}
-x{file: echo.S}
+	@expand(code)
+@end(file: echo.S)
 ```
 * Das Programm besteht wieder aus einem Daten-Segment und einem 
   Code-Segment
 * Die golbale Symbol-Liste wird wiederverwendet
 
 ```
-d{data}
+@def(data)
 	G{buffer}
-x{data}
+@end(data)
 ```
 
 ```
-d{code}
+@def(code)
 	.global _start
 _start:
 	g{init buffer}
-	e{write arguments}
-	e{add newline}
+	@expand(write arguments)
+	@expand(add newline)
 	G{flush buffer}
 	G{exit}
-x{code}
+@end(code)
 ```
 
 ```
@@ -38,7 +38,7 @@ D{init buffer}
 	ldr r9, =buffer_size
 	add r9, r8, r9
 	mov r10, r8
-x{init buffer}
+@end(init buffer)
 ```
 
 ```
@@ -46,62 +46,62 @@ D{flush buffer}
 	sub r0, r10, r8
 	G{write buffer}
 	mov r10, r8
-x{flush buffer}
+@end(flush buffer)
 ```
 
 ```
-d{add newline}
+@def(add newline)
 	cmp r10, r9
 	blt space_for_newline
 	G{flush buffer}
 space_for_newline:
 	mov r0, $'\n 
 	strb r0, [r10], #1
-x{add newline}
+@end(add newline)
 ```
 
 ```
-d{write arguments}
+@def(write arguments)
 	ldmfd sp!, {r11}
 	add sp, sp, #4
 	mov r12, #-1
-x{write arguments}
+@end(write arguments)
 ```
 
 ```
-a{write arguments}
+@add(write arguments)
 loop:
 	subs r11, r11, #1
 	ble finish
-	e{write argument}
+	@expand(write argument)
 	b loop
 finish:
-x{write arguments}
+@end(write arguments)
 ```
 
 ```
-d{write argument}
+@def(write argument)
 	cmp r12, #0
 	bne no_space
-	e{add space}
+	@expand(add space)
 no_space:
 	mov r12, #0
-x{write argument}
+@end(write argument)
 ```
 
 ```
-d{add space}
+@def(add space)
 	cmp r10, r9
 	blt space_for_space
 	G{flush buffer}
 space_for_space:
 	mov r0, $' 
 	strb r0, [r10], #1
-x{add space}
+@end(add space)
 ```
 
 ```
-a{write argument}
+@add(write argument)
 	ldmfd sp!, {r12}
 arg_loop:
 	ldrb r14, [r12], #1
@@ -115,5 +115,5 @@ space_for_arg:
 	b arg_loop
 finish_arg_loop:
 	mov r12, #0
-x{write argument}
+@end(write argument)
 ```

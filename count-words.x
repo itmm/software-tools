@@ -5,51 +5,51 @@
 
 ```
 D{file: count-words.s}
-	e{data}
-	e{code}
-x{file: count-words.s}
+	@expand(data)
+	@expand(code)
+@end(file: count-words.s)
 ```
 * Wieder eine Aufteilung in Daten und Code
 
 ```
-d{data}
+@def(data)
 	.data
-	e{data entries}
-x{data}
+	@expand(data entries)
+@end(data)
 ```
 * Die Daten enthalten Einträge
 
 ```
-d{code}
+@def(code)
 	.text
-	e{main}
-x{code}
+	@expand(main)
+@end(code)
 ```
 * Und der Code besteht nur aus der `main`-Funktion
 
 ```
-d{main}
+@def(main)
 	.global main
 main:
 	mov r4, lr
 
-	e{setup}
-	e{loop}
+	@expand(setup)
+	@expand(loop)
 	G{reply}
 
 	mov r0, #0
 	mov pc, r4
-x{main}
+@end(main)
 ```
 * Das Rücksprung-Register wird gesichert
 * Und die drei Schritte Setup, Zeichen lesen und Ausgabe werden
   abgearbeitet
 
 ```
-d{setup}
+@def(setup)
 	mov r5, #0
 	mov r6, #0
-x{setup}
+@end(setup)
 ```
 * Diesmal werden zwei Register verwendet
 * `r5` ist wieder der Zähler
@@ -57,27 +57,27 @@ x{setup}
   Teil eines Wortes war
 
 ```
-d{loop}
+@def(loop)
 loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	e{space handling}
-	e{word handling}
+	@expand(space handling)
+	@expand(word handling)
 	b loop
 done:
-x{loop}
+@end(loop)
 ```
 * Die Schleife wird wieder beendet, wenn das Ende erreicht ist
 * Diesmal werden zuerst Freizeichen behandelt
 * Danach werden Wort-Zeichen behandelt
 
 ```
-d{space handling}
+@def(space handling)
 	cmp r0, s{$' } 
 	movle r6, #0
 	ble loop
-x{space handling}
+@end(space handling)
 ```
 * Das aktuelle Zeichen wird mit dem Freizeichen verglichen
 * Wenn es kleiner oder gleich ist, dann ist es nicht Teil eines Wortes
@@ -87,11 +87,11 @@ x{space handling}
   die nicht Teil eines Wortes sind
 
 ```
-d{word handling}
+@def(word handling)
 	cmp r6, #0
 	addeq r5, r5, #1
 	mov r6, #-1
-x{word handling}
+@end(word handling)
 ```
 * Wenn der Code an diese Stelle kommt, dann ist das aktuelle Zeichen
   Teil eines Worts
@@ -101,9 +101,9 @@ x{word handling}
 * Die Wort-Markierung kann in jedem Fall gesetzt werden
 
 ```
-d{data entries}
+@def(data entries)
 	G{reply format}
-x{data entries}
+@end(data entries)
 ```
 * Wieder wird die Ausgabe von `count-chars` übernommen
 * Das verwendete Format muss eingebunden werden

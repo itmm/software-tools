@@ -9,22 +9,22 @@
 D{file: copy.S}
 	G{symbols}
 	.data
-	e{data}
+	@expand(data)
 	.text
-	e{code}
-x{file: copy.S}
+	@expand(code)
+@end(file: copy.S)
 ```
 * Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
   Programm `hello`
 * Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 
 ```
-d{code}
+@def(code)
 	.global _start
 f{_start}:
-	e{copy}
+	@expand(copy)
 	G{exit}
-x{code}
+@end(code)
 ```
 * Das Programm kopiert die gesamte Standard-Eingabe in die
   Standard-Ausgabe
@@ -36,11 +36,11 @@ x{code}
 * Das Programm kopiert die gesamte Eingabe blockweise
 
 ```
-d{copy}
+@def(copy)
 loop:
-	e{loop}
+	@expand(loop)
 finish:
-x{copy}
+@end(copy)
 ```
 * Das `loop`-Fragment implementiert die eigentliche Schleife
 * Nachdem das Programm eine Iteration verarbeitet hat, springt es
@@ -48,9 +48,9 @@ x{copy}
 * Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
 
 ```
-d{data}
+@def(data)
 	G{buffer}
-x{data}
+@end(data)
 ```
 * Im Daten-Segment hat das Programm einen Buffer definiert
 * In diesem legt das Programm gelesene Zeichen ab
@@ -60,7 +60,7 @@ D{buffer}
 	.equ buffer_size, 4096
 buffer:
 	.space buffer_size
-x{buffer}
+@end(buffer)
 ```
 * Der Buffer hat eine Größe von 4 Kilobyte
 * Der Assembler legt die Größe im Symbol `buffer_size` ab
@@ -71,17 +71,17 @@ x{buffer}
 A{symbols}
 	.equ read, 3
 	.equ stdin, 0
-x{symbols}
+@end(symbols)
 ```
 * Der `read`-Trap hat die Nummer `3`
 * Der File-Descriptor für die Standard-Eingabe ist `0`
 
 ```
-d{loop}
+@def(loop)
 	g{read buffer}
 	G{write buffer}
-	e{next}
-x{loop}
+	@expand(next)
+@end(loop)
 ```
 * Das Programm befüllt den Buffer
 * und schreibt ihn dann aus
@@ -96,7 +96,7 @@ D{read buffer}
 	ldr r1, =buffer
 	ldr r2, =buffer_size
 	swi 0
-x{read buffer}
+@end(read buffer)
 ```
 * Das Programm liest Bytes in den Buffer
 
@@ -104,15 +104,15 @@ x{read buffer}
 A{read buffer}
 	cmp r0, #0
 	ble finish
-x{read buffer}
+@end(read buffer)
 ```
 * Wenn das Ergebnis kleiner oder gleich `0` ist, dann ist das Ende
   erreicht
 
 ```
-d{next}
+@def(next)
 	b loop
-x{next}
+@end(next)
 ```
 * Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
   das Programm am Ende der Schleife zur nächsten Iteration zurück
@@ -125,7 +125,7 @@ D{write buffer}
 	mov r0, #stdout
 	ldr r1, =buffer
 	swi 0
-x{write buffer}
+@end(write buffer)
 ```
 * Das Programm schreibt die befüllten Bytes des Buffers
 * Die Anzahl der Bytes sichert es als neue Länge bevor das Register

@@ -7,42 +7,42 @@ D{file: un-tab.s}
 f{main}:
 	mov r4, lr
 
-	e{setup}
-	e{loop}
+	@expand(setup)
+	@expand(loop)
 
 	mov r0, #0
 	mov pc, r4
-x{file: un-tab.s}
+@end(file: un-tab.s)
 ```
 * Der ausführbare Bereich besteht nur aus der `main`-Funktion
 * Vor der Schleife werden die Variablen initialisiert
 
 ```
-d{setup}
+@def(setup)
 	mov r5, #8
-x{setup}
+@end(setup)
 ```
 * `r5` gibt an, wie viele Freizeichen in der aktuellen Spalte
   ausgegeben werden müssen, wenn ein Tab erweitert wird
 
 ```
-d{loop}
+@def(loop)
 loop:
 	bl f{getchar}
 	cmp r0, #0
 	blt done
-	e{expand tab}
+	@expand(expand tab)
 	G{no tab}
 	b loop
 done:
-x{loop}
+@end(loop)
 ```
 * Wenn die Eingabe zu Ende ist, wird die Schleife verlassen
 * Zuerst wird auf einen Tabulator geprüft
 * Ansonsten werden die restlichen Zeichen verarbeitet
 
 ```
-d{expand tab}
+@def(expand tab)
 	cmp r0, s{$'\t}
 	bne no_tab
 
@@ -55,7 +55,7 @@ tab_loop:
 	b loop
 
 no_tab:
-x{expand tab}
+@end(expand tab)
 ```
 * Wenn kein Tabulator gelesen wird, dann wird in den Else-Zweig
   gesprungen
@@ -72,7 +72,7 @@ D{no tab}
 
 	cmp r0, s{$'\n}
 	moveq r5, #8
-x{no tab}
+@end(no tab)
 ```
 * Sonst wird das Zeichen ausgegeben
 * Und der Zähler reduziert

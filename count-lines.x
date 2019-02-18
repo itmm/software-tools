@@ -3,42 +3,42 @@
 
 ```
 D{file: count-lines.s}
-	e{data}
-	e{code}
-x{file: count-lines.s}
+	@expand(data)
+	@expand(code)
+@end(file: count-lines.s)
 ```
 * Auch hier besteht das Programm aus einem Datenblock
 * Und einem Code-Block
 
 ```
-d{data}
+@def(data)
 	.data
-	e{data entries}
-x{data}
+	@expand(data entries)
+@end(data)
 ```
 * Der Datenblock enthält Einträge
 
 ```
-d{code}
+@def(code)
 	.text
-	e{main}
-x{code}
+	@expand(main)
+@end(code)
 ```
 * Der Code-Block nur die `main` Funktion
 
 ```
-d{main}
+@def(main)
 	.global main
 main:
 	mov r4, lr
 
-	e{setup}
-	e{loop}
+	@expand(setup)
+	@expand(loop)
 	G{reply}
 
 	mov r0, #0
 	mov pc, r4
-x{main}
+@end(main)
 ```
 * Wie vorher wird die Rücksprung-Adresse gesichert
 * Danach der Status initialisiert
@@ -46,14 +46,14 @@ x{main}
 * Und zum Schluss die Summe ausgegeben
 
 ```
-d{setup}
+@def(setup)
 	mov r5, #0
-x{setup}
+@end(setup)
 ```
 * Das Zähl-Register wird mit `0` initialisiert
 
 ```
-d{loop}
+@def(loop)
 loop:
 	bl getchar
 	cmp r0, #0
@@ -62,16 +62,16 @@ loop:
 	addeq r5, r5, #1
 	b loop
 done:
-x{loop}
+@end(loop)
 ```
 * In der Schleife prüft das Programm zuerst, ob das Ende erreicht ist
 * Wenn nicht wird getestet, ob das Zeichen ein Zeilenumbruch ist
 * Nur in diesem Fall wird der Zähler erhöht
 
 ```
-d{data entries}
+@def(data entries)
 	G{reply format}
-x{data entries}
+@end(data entries)
 ```
 * Die Ausgabe ist aus dem Programm `count-chars` entnommen
 * Dessen Format für die `printf`-Funktion muss hier ebenfalls integriert

@@ -7,28 +7,28 @@
 
 ```
 D{file: hello.S}
-	e{parts}
-x{file: hello.S}
+	@expand(parts)
+@end(file: hello.S)
 ```
 * Das Programm besteht aus mehreren Teilen
 
 ```
-d{parts}
+@def(parts)
 	G{symbols}
-x{parts}
+@end(parts)
 ```
 * Am Anfang des Programms stehen Symbol-Definitionen
 * Anstatt von nackten Zahlen verwendet das Programm beschreibende Namen
 * und ist so verständlicher
 
 ```
-a{parts}
+@add(parts)
 	.global _start
 _start:
-	e{write}
+	@expand(write)
 	G{exit}
-	e{data}
-x{parts}
+	@expand(data)
+@end(parts)
 ```
 * Das Programm gibt nur die Nachricht aus
 * und beendet sich danach selber
@@ -42,7 +42,7 @@ x{parts}
 D{symbols}
 	.equ exit, 1
 	.equ exit_success, 0
-x{symbols}
+@end(symbols)
 ```
 * Der Exit-Trap hat die Nummer `1`
 * und erwartet den Return-Code im Register `r0`
@@ -54,7 +54,7 @@ D{exit}
 	mov r7, #exit
 	mov r0, #exit_success
 	swi 0
-x{exit}
+@end(exit)
 ```
 * Die Trap-Nummer steht in Register `r7`
 * Die Argumente des Traps stehen in den Registern `r0` bis `r6`
@@ -66,11 +66,11 @@ x{exit}
 * Die Nachricht liegt in der Daten-Sektion
 
 ```
-d{data}
+@def(data)
 msg:
 	.ascii "Hallo Welt\n"
 	.equ msg_len, . - msg
-x{data}
+@end(data)
 ```
 * In der Daten-Sektion liegt die Nachricht, die das Programm ausgibt
 * Der Assembler berechnet die Länge der Nachricht
@@ -81,19 +81,19 @@ x{data}
 A{symbols}
 	.equ write, 4
 	.equ stdout, 1
-x{symbols}
+@end(symbols)
 ```
 * Die Trap-Nummer für `write` ist `4`
 * Und der offene Datei-Handle für die Standard-Ausgabe ist `1`
 
 ```
-d{write}
+@def(write)
 	mov r7, #write
 	mov r0, #stdout
 	add r1, pc, #(msg - . - 8)
 	mov r2, #msg_len
 	swi 0
-x{write}
+@end(write)
 ```
 * Der `write`-Trap hat die Ausgabe-Datei als erstes Argument
 * Das zweite Argument ist der Start der Bytes, die ausgegeben werden
