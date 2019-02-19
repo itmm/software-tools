@@ -2,7 +2,7 @@
 * Zählt alle Zeilen der Eingabe
 
 ```
-D{file: count-lines.s}
+@Def(file: count-lines.s)
 	@put(data)
 	@put(code)
 @end(file: count-lines.s)
