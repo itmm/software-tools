@@ -78,7 +78,7 @@ msg:
 * Die Nachricht enthält kein abschließendes Null-Byte
 
 ```
-A{symbols}
+@Add(symbols)
 	.equ write, 4
 	.equ stdout, 1
 @end(symbols)

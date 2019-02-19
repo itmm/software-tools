@@ -68,7 +68,7 @@ buffer:
 * sondern arbeitet nur mit dem Symbol `buffer_size`
 
 ```
-A{symbols}
+@Add(symbols)
 	.equ read, 3
 	.equ stdin, 0
 @end(symbols)
@@ -101,7 +101,7 @@ A{symbols}
 * Das Programm liest Bytes in den Buffer
 
 ```
-A{read buffer}
+@Add(read buffer)
 	cmp r0, #0
 	ble finish
 @end(read buffer)

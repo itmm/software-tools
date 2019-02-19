@@ -115,7 +115,7 @@ sondern arbeitet nur mit dem Symbol <code><span class="var">buffer_size</span></
 </div>
 <div><div>
 <code>
-<span class="var">A</span>{<span class="var">ymbols</span>}<br/>
+<span class="macro">@Add(<span class="name">symbols</span>)</span><br/>
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">read</span>, <span class="num">3</span><br/>
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">stdin</span>, <span class="num">0</span><br/>
 <span class="macro">@end(<span class="name">symbols</span>)</span><br/>
@@ -161,7 +161,7 @@ Das Programm liest Bytes in den Buffer
 </div>
 <div><div>
 <code>
-<span class="var">A</span>{<span class="var">ead</span> <span class="var">buffer</span>}<br/>
+<span class="macro">@Add(<span class="name">read buffer</span>)</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">ble</span> <span class="var">finish</span><br/>
 <span class="macro">@end(<span class="name">read buffer</span>)</span><br/>
