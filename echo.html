@@ -16,8 +16,8 @@ Gibt alle Argumente aus
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">file: echo.S</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
+<span class="macro">@Def(<span class="name">file: echo.S</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">ymbols</span>}<br/>
 <span class="in1"></span>.<span class="var">data</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
@@ -34,7 +34,7 @@ Die golbale Symbol-Liste wird wiederverwendet
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">uffer</span>}<br/>
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
 </code></div>
 </div>
@@ -43,17 +43,17 @@ Die golbale Symbol-Liste wird wiederverwendet
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="var">_start</span>:<br/>
-<span class="in1"></span><span class="macro">@globexpand(<span class="name">init buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">g</span>{<span class="var">nit</span> <span class="var">buffer</span>}<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">write arguments</span>)</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">add newline</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">lush</span> <span class="var">buffer</span>}<br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">xit</span>}<br/>
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">init buffer</span>)</span><br/>
+<span class="macro">@Def(<span class="name">init buffer</span>)</span><br/>
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r8</span>, =<span class="var">buffer</span><br/>
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r9</span>, =<span class="var">buffer_size</span><br/>
 <span class="in1"></span><span class="var">add</span> <span class="var">r9</span>, <span class="var">r8</span>, <span class="var">r9</span><br/>
@@ -63,9 +63,9 @@ Die golbale Symbol-Liste wird wiederverwendet
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">flush buffer</span>)</span><br/>
+<span class="macro">@Def(<span class="name">flush buffer</span>)</span><br/>
 <span class="in1"></span><span class="var">sub</span> <span class="var">r0</span>, <span class="var">r10</span>, <span class="var">r8</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">write buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">rite</span> <span class="var">buffer</span>}<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r10</span>, <span class="var">r8</span><br/>
 <span class="macro">@end(<span class="name">flush buffer</span>)</span><br/>
 </code></div>
@@ -75,7 +75,7 @@ Die golbale Symbol-Liste wird wiederverwendet
 <span class="macro">@def(<span class="name">add newline</span>)</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_newline</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">lush</span> <span class="var">buffer</span>}<br/>
 <span class="var">space_for_newline</span>:<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="var">$</span>'\<span class="var">n</span> <br/>
 <span class="in1"></span><span class="var">strb</span> <span class="var">r0</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
@@ -119,7 +119,7 @@ Die golbale Symbol-Liste wird wiederverwendet
 <span class="macro">@def(<span class="name">add space</span>)</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_space</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">lush</span> <span class="var">buffer</span>}<br/>
 <span class="var">space_for_space</span>:<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="var">$</span>' <br/>
 <span class="in1"></span><span class="var">strb</span> <span class="var">r0</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
@@ -136,7 +136,7 @@ Die golbale Symbol-Liste wird wiederverwendet
 <span class="in1"></span><span class="var">beq</span> <span class="var">finish_arg_loop</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r10</span>, <span class="var">r9</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">space_for_arg</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">flush buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">lush</span> <span class="var">buffer</span>}<br/>
 <span class="var">space_for_arg</span>:<br/>
 <span class="in1"></span><span class="var">strb</span> <span class="var">r14</span>, [<span class="var">r10</span>], #<span class="num">1</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">arg_loop</span><br/>

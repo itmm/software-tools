@@ -6,7 +6,7 @@
   Ende der Eingabe erreicht ist
 
 ```
-D{file: copy.S}
+@Def(file: copy.S)
 	G{symbols}
 	.data
 	@put(data)
@@ -56,7 +56,7 @@ finish:
 * In diesem legt das Programm gelesene Zeichen ab
 
 ```
-D{buffer}
+@Def(buffer)
 	.equ buffer_size, 4096
 buffer:
 	.space buffer_size
@@ -90,7 +90,7 @@ A{symbols}
 * Danach durchläuft das Programm die Schleife erneut
 
 ```
-D{read buffer}
+@Def(read buffer)
 	mov r7, #read
 	mov r0, #stdin
 	ldr r1, =buffer
@@ -119,7 +119,7 @@ A{read buffer}
   springen
 
 ```
-D{write buffer}
+@Def(write buffer)
 	mov r7, #write
 	mov r2, r0
 	mov r0, #stdout

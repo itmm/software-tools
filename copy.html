@@ -22,8 +22,8 @@ Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">file: copy.S</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
+<span class="macro">@Def(<span class="name">file: copy.S</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">ymbols</span>}<br/>
 <span class="in1"></span>.<span class="var">data</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
@@ -43,7 +43,7 @@ Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="fn">_start</span>:<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">copy</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">xit</span>}<br/>
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -86,7 +86,7 @@ Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">uffer</span>}<br/>
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -97,7 +97,7 @@ In diesem legt das Programm gelesene Zeichen ab
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">buffer</span>)</span><br/>
+<span class="macro">@Def(<span class="name">buffer</span>)</span><br/>
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">buffer_size</span>, <span class="num">4096</span><br/>
 <span class="var">buffer</span>:<br/>
 <span class="in1"></span>.<span class="var">space</span> <span class="var">buffer_size</span><br/>
@@ -115,7 +115,7 @@ sondern arbeitet nur mit dem Symbol <code><span class="var">buffer_size</span></
 </div>
 <div><div>
 <code>
-<span class="macro">@globadd(<span class="name">symbols</span>)</span><br/>
+<span class="var">A</span>{<span class="var">ymbols</span>}<br/>
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">read</span>, <span class="num">3</span><br/>
 <span class="in1"></span>.<span class="var">equ</span> <span class="var">stdin</span>, <span class="num">0</span><br/>
 <span class="macro">@end(<span class="name">symbols</span>)</span><br/>
@@ -129,8 +129,8 @@ Der File-Descriptor für die Standard-Eingabe ist <code><span class="num">0</spa
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globexpand(<span class="name">read buffer</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">write buffer</span>)</span><br/>
+<span class="in1"></span><span class="var">g</span>{<span class="var">ead</span> <span class="var">buffer</span>}<br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">rite</span> <span class="var">buffer</span>}<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">next</span>)</span><br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
 </code></div>
@@ -147,7 +147,7 @@ Danach durchläuft das Programm die Schleife erneut
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">read buffer</span>)</span><br/>
+<span class="macro">@Def(<span class="name">read buffer</span>)</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">read</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdin</span><br/>
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r1</span>, =<span class="var">buffer</span><br/>
@@ -161,7 +161,7 @@ Das Programm liest Bytes in den Buffer
 </div>
 <div><div>
 <code>
-<span class="macro">@globadd(<span class="name">read buffer</span>)</span><br/>
+<span class="var">A</span>{<span class="var">ead</span> <span class="var">buffer</span>}<br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">ble</span> <span class="var">finish</span><br/>
 <span class="macro">@end(<span class="name">read buffer</span>)</span><br/>
@@ -185,7 +185,7 @@ Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">write buffer</span>)</span><br/>
+<span class="macro">@Def(<span class="name">write buffer</span>)</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">write</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r2</span>, <span class="var">r0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdout</span><br/>

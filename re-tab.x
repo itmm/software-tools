@@ -1,7 +1,7 @@
 # un-tab - Tabulatoren expandieren
 
 ```
-D{file: re-tab.s}
+@Def(file: re-tab.s)
 	.text
 	.global main
 f{main}:

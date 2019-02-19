@@ -6,7 +6,7 @@
 * Sondern nur direkte Aufrufe von Kernel-Funktionen
 
 ```
-D{file: hello.S}
+@Def(file: hello.S)
 	@put(parts)
 @end(file: hello.S)
 ```
@@ -39,7 +39,7 @@ _start:
 * Ansonsten stürzt das Programm ab
 
 ```
-D{symbols}
+@Def(symbols)
 	.equ exit, 1
 	.equ exit_success, 0
 @end(symbols)
@@ -50,7 +50,7 @@ D{symbols}
   Ablauf
 
 ```
-D{exit}
+@Def(exit)
 	mov r7, #exit
 	mov r0, #exit_success
 	swi 0

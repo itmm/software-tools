@@ -4,7 +4,7 @@
   und Ausgabe zu Hilfe genommen
 
 ```
-D{file: count-chars.s}
+@Def(file: count-chars.s)
 	@put(data)
 	@put(code)
 @end(file: count-chars.s)
@@ -84,7 +84,7 @@ done:
 * Das Format der Antwort
 
 ```
-D{reply format}
+@Def(reply format)
 reply:
 	.string "%d\n"
 @end(reply format)
@@ -95,7 +95,7 @@ reply:
 * `%d` steht für eine ganze Zahl und `\n` für einen Zeilenumbruch
 
 ```
-D{reply}
+@Def(reply)
 	ldr r0, =reply
 	mov r1, r5
 	bl printf

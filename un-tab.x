@@ -1,7 +1,7 @@
 # un-tab - Tabulatoren expandieren
 
 ```
-D{file: un-tab.s}
+@Def(file: un-tab.s)
 	.text
 	.global main
 f{main}:
@@ -64,7 +64,7 @@ no_tab:
 * Und das nächste Zeichen gelesen
 
 ```
-D{no tab}
+@Def(no tab)
 	bl f{putchar}
 
 	subs r5, r5, #1

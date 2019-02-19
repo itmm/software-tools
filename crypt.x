@@ -5,7 +5,7 @@
   oder-verknüpft
 
 ```
-D{file: crypt.s}
+@Def(file: crypt.s)
 	.text
 	.global main
 f{main}:

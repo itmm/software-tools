@@ -2,7 +2,7 @@
 * Gibt alle Argumente aus
 
 ```
-D{file: echo.S}
+@Def(file: echo.S)
 	G{symbols}
 	.data
 	@put(data)
@@ -33,7 +33,7 @@ _start:
 ```
 
 ```
-D{init buffer}
+@Def(init buffer)
 	ldr r8, =buffer
 	ldr r9, =buffer_size
 	add r9, r8, r9
@@ -42,7 +42,7 @@ D{init buffer}
 ```
 
 ```
-D{flush buffer}
+@Def(flush buffer)
 	sub r0, r10, r8
 	G{write buffer}
 	mov r10, r8

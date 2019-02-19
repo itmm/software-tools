@@ -13,7 +13,7 @@
 </div>
 <div><div>
 <code>
-<span class="macro">@globdef(<span class="name">file: re-tab.s</span>)</span><br/>
+<span class="macro">@Def(<span class="name">file: re-tab.s</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
 <span class="fn">main</span>:<br/>
@@ -51,7 +51,7 @@ Vor der Schleife werden die Variablen initialisiert
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">spaces</span>)</span><br/>
-<span class="in1"></span><span class="macro">@globmult(<span class="name">no tab</span>)</span><br/>
+<span class="in1"></span><span class="var">G</span>{<span class="var">o</span> <span class="var">tab</span>}<br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 <span class="var">done</span>:<br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>

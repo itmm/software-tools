@@ -4,7 +4,7 @@
   Zeilenumbrüche separiert werden
 
 ```
-D{file: count-words.s}
+@Def(file: count-words.s)
 	@put(data)
 	@put(code)
 @end(file: count-words.s)
