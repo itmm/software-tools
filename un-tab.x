@@ -7,8 +7,8 @@ D{file: un-tab.s}
 f{main}:
 	mov r4, lr
 
-	@expand(setup)
-	@expand(loop)
+	@put(setup)
+	@put(loop)
 
 	mov r0, #0
 	mov pc, r4
@@ -31,7 +31,7 @@ loop:
 	bl f{getchar}
 	cmp r0, #0
 	blt done
-	@expand(expand tab)
+	@put(expand tab)
 	G{no tab}
 	b loop
 done:

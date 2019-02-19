@@ -25,9 +25,9 @@ Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
 <span class="macro">@globdef(<span class="name">file: copy.S</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">symbols</span>)</span><br/>
 <span class="in1"></span>.<span class="var">data</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">code</span>)</span><br/>
 <span class="macro">@end(<span class="name">file: copy.S</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -42,7 +42,7 @@ Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="fn">_start</span>:<br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">copy</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">copy</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
@@ -70,7 +70,7 @@ Das Programm kopiert die gesamte Eingabe blockweise
 <code>
 <span class="macro">@def(<span class="name">copy</span>)</span><br/>
 <span class="var">loop</span>:<br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <span class="var">finish</span>:<br/>
 <span class="macro">@end(<span class="name">copy</span>)</span><br/>
 </code></div>
@@ -131,7 +131,7 @@ Der File-Descriptor für die Standard-Eingabe ist <code><span class="num">0</spa
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globexpand(<span class="name">read buffer</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">write buffer</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">next</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">next</span>)</span><br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
 </code></div>
 <ul><li>

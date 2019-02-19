@@ -19,8 +19,8 @@
 <span class="fn">main</span>:<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
 <br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">setup</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
@@ -50,7 +50,7 @@ Vor der Schleife werden die Variablen initialisiert
 <span class="in1"></span><span class="var">bl</span> <span class="fn">getchar</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">expand tab</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">expand tab</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">no tab</span>)</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 <span class="var">done</span>:<br/>

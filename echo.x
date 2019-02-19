@@ -5,9 +5,9 @@
 D{file: echo.S}
 	G{symbols}
 	.data
-	@expand(data)
+	@put(data)
 	.text
-	@expand(code)
+	@put(code)
 @end(file: echo.S)
 ```
 * Das Programm besteht wieder aus einem Daten-Segment und einem 
@@ -25,8 +25,8 @@ D{file: echo.S}
 	.global _start
 _start:
 	g{init buffer}
-	@expand(write arguments)
-	@expand(add newline)
+	@put(write arguments)
+	@put(add newline)
 	G{flush buffer}
 	G{exit}
 @end(code)
@@ -73,7 +73,7 @@ space_for_newline:
 loop:
 	subs r11, r11, #1
 	ble finish
-	@expand(write argument)
+	@put(write argument)
 	b loop
 finish:
 @end(write arguments)
@@ -83,7 +83,7 @@ finish:
 @def(write argument)
 	cmp r12, #0
 	bne no_space
-	@expand(add space)
+	@put(add space)
 no_space:
 	mov r12, #0
 @end(write argument)

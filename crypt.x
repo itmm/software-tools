@@ -10,7 +10,7 @@ D{file: crypt.s}
 	.global main
 f{main}:
 	stmfd sp!, {lr}
-	@expand(crypt)
+	@put(crypt)
 	mov r0, #0
 	ldmfd sp!, {lr}
 	mov pc, lr
@@ -23,8 +23,8 @@ f{main}:
 ```
 @def(crypt)
 	mov r4, sp
-	@expand(copy args on stack)
-	@expand(loop)
+	@put(copy args on stack)
+	@put(loop)
 	mov sp, r4
 @end(crypt)
 ```
@@ -39,7 +39,7 @@ loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	@expand(encrypt char)
+	@put(encrypt char)
 	bl putchar
 	b loop
 done:
@@ -78,7 +78,7 @@ crypt_loop:
 	beq end_of_crypt_loop
 
 	ldr r2, [r1]
-	@expand(encrypt with key)
+	@put(encrypt with key)
 	str r2, [r1]
 	add r1, r1, #4
 	b crypt_loop
@@ -98,7 +98,7 @@ end_of_crypt_loop:
 	addne r2, #1
 	bne valid_ch
 
-	@expand(reset key)
+	@put(reset key)
 
 valid_ch:
 	eor r0, r0, r3

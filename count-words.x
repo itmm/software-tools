@@ -5,8 +5,8 @@
 
 ```
 D{file: count-words.s}
-	@expand(data)
-	@expand(code)
+	@put(data)
+	@put(code)
 @end(file: count-words.s)
 ```
 * Wieder eine Aufteilung in Daten und Code
@@ -14,7 +14,7 @@ D{file: count-words.s}
 ```
 @def(data)
 	.data
-	@expand(data entries)
+	@put(data entries)
 @end(data)
 ```
 * Die Daten enthalten Einträge
@@ -22,7 +22,7 @@ D{file: count-words.s}
 ```
 @def(code)
 	.text
-	@expand(main)
+	@put(main)
 @end(code)
 ```
 * Und der Code besteht nur aus der `main`-Funktion
@@ -33,8 +33,8 @@ D{file: count-words.s}
 main:
 	mov r4, lr
 
-	@expand(setup)
-	@expand(loop)
+	@put(setup)
+	@put(loop)
 	G{reply}
 
 	mov r0, #0
@@ -62,8 +62,8 @@ loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	@expand(space handling)
-	@expand(word handling)
+	@put(space handling)
+	@put(word handling)
 	b loop
 done:
 @end(loop)

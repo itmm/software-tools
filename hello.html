@@ -24,7 +24,7 @@ Sondern nur direkte Aufrufe von Kernel-Funktionen
 <div><div>
 <code>
 <span class="macro">@globdef(<span class="name">file: hello.S</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">parts</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">parts</span>)</span><br/>
 <span class="macro">@end(<span class="name">file: hello.S</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -50,9 +50,9 @@ und ist so verständlicher
 <span class="macro">@add(<span class="name">parts</span>)</span><br/>
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="var">_start</span>:<br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">write</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">write</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">exit</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="macro">@end(<span class="name">parts</span>)</span><br/>
 </code></div>
 <ul><li>

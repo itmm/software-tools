@@ -7,8 +7,8 @@ D{file: re-tab.s}
 f{main}:
 	mov r4, lr
 
-	@expand(setup)
-	@expand(loop)
+	@put(setup)
+	@put(loop)
 
 	mov r0, #0
 	mov pc, r4
@@ -31,7 +31,7 @@ loop:
 	bl f{getchar}
 	cmp r0, #0
 	blt done
-	@expand(spaces)
+	@put(spaces)
 	G{no tab}
 	b loop
 done:
@@ -49,8 +49,8 @@ done:
 
 	mov r6, #1
 space_loop:
-	@expand(space loop)
-	@expand(write spaces)
+	@put(space loop)
+	@put(write spaces)
 
 no_space:
 @end(spaces)
@@ -68,10 +68,10 @@ no_space:
 	subs r5, r5, #1
 	bne no_tab_yet
 
-	@expand(write tab)
+	@put(write tab)
 
 no_tab_yet:
-	@expand(next char)
+	@put(next char)
 @end(space loop)
 ```
 * Wenn der Spaltenzähler `0` wird, kann ein Tabulator ausgegeben werden

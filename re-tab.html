@@ -19,8 +19,8 @@
 <span class="fn">main</span>:<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
 <br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">setup</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
@@ -50,7 +50,7 @@ Vor der Schleife werden die Variablen initialisiert
 <span class="in1"></span><span class="var">bl</span> <span class="fn">getchar</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">spaces</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">spaces</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">no tab</span>)</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 <span class="var">done</span>:<br/>
@@ -74,8 +74,8 @@ Dieser Teil wird aus dem Programm <code><span class="var">un</span>-<span class=
 <br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">1</span><br/>
 <span class="var">space_loop</span>:<br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">space loop</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">write spaces</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">space loop</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">write spaces</span>)</span><br/>
 <br/>
 <span class="var">no_space</span>:<br/>
 <span class="macro">@end(<span class="name">spaces</span>)</span><br/>
@@ -100,10 +100,10 @@ Und in der Schleife werden Leerzeichen gelesen und durch Tabulatoren
 <span class="in1"></span><span class="var">subs</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
 <span class="in1"></span><span class="var">bne</span> <span class="var">no_tab_yet</span><br/>
 <br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">write tab</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">write tab</span>)</span><br/>
 <br/>
 <span class="var">no_tab_yet</span>:<br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">next char</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">next char</span>)</span><br/>
 <span class="macro">@end(<span class="name">space loop</span>)</span><br/>
 </code></div>
 <ul><li>

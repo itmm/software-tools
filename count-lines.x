@@ -3,8 +3,8 @@
 
 ```
 D{file: count-lines.s}
-	@expand(data)
-	@expand(code)
+	@put(data)
+	@put(code)
 @end(file: count-lines.s)
 ```
 * Auch hier besteht das Programm aus einem Datenblock
@@ -13,7 +13,7 @@ D{file: count-lines.s}
 ```
 @def(data)
 	.data
-	@expand(data entries)
+	@put(data entries)
 @end(data)
 ```
 * Der Datenblock enthält Einträge
@@ -21,7 +21,7 @@ D{file: count-lines.s}
 ```
 @def(code)
 	.text
-	@expand(main)
+	@put(main)
 @end(code)
 ```
 * Der Code-Block nur die `main` Funktion
@@ -32,8 +32,8 @@ D{file: count-lines.s}
 main:
 	mov r4, lr
 
-	@expand(setup)
-	@expand(loop)
+	@put(setup)
+	@put(loop)
 	G{reply}
 
 	mov r0, #0

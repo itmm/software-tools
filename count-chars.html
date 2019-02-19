@@ -20,8 +20,8 @@ Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
 <div><div>
 <code>
 <span class="macro">@globdef(<span class="name">file: count-chars.s</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">data</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">code</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">code</span>)</span><br/>
 <span class="macro">@end(<span class="name">file: count-chars.s</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -35,7 +35,7 @@ Dieser enthält eine Zeichenkette zur Ausgabe von Zahlen
 <code>
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
 <span class="in1"></span>.<span class="var">data</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">data entries</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">data entries</span>)</span><br/>
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -46,7 +46,7 @@ Die einzelnen Daten liegen in der <code>.<span class="var">data</span></code>-Se
 <code>
 <span class="macro">@def(<span class="name">code</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">main</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">main</span>)</span><br/>
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -62,8 +62,8 @@ Es gibt wieder nur eine einzige Funktion <code><span class="var">main</span></co
 <span class="var">main</span>:<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r4</span>, <span class="var">lr</span><br/>
 <br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="macro">@expand(<span class="name">loop</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">setup</span>)</span><br/>
+<span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <span class="in1"></span><span class="macro">@globmult(<span class="name">reply</span>)</span><br/>
 <br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>

@@ -5,8 +5,8 @@
 
 ```
 D{file: count-chars.s}
-	@expand(data)
-	@expand(code)
+	@put(data)
+	@put(code)
 @end(file: count-chars.s)
 ```
 * Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
@@ -16,7 +16,7 @@ D{file: count-chars.s}
 ```
 @def(data)
 	.data
-	@expand(data entries)
+	@put(data entries)
 @end(data)
 ```
 * Die einzelnen Daten liegen in der `.data`-Sektion
@@ -24,7 +24,7 @@ D{file: count-chars.s}
 ```
 @def(code)
 	.text
-	@expand(main)
+	@put(main)
 @end(code)
 ```
 * Die ausführbaren Befehle liegen in der `.text`-Sektion
@@ -36,8 +36,8 @@ D{file: count-chars.s}
 main:
 	mov r4, lr
 
-	@expand(setup)
-	@expand(loop)
+	@put(setup)
+	@put(loop)
 	G{reply}
 
 	mov r0, #0

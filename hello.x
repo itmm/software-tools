@@ -7,7 +7,7 @@
 
 ```
 D{file: hello.S}
-	@expand(parts)
+	@put(parts)
 @end(file: hello.S)
 ```
 * Das Programm besteht aus mehreren Teilen
@@ -25,9 +25,9 @@ D{file: hello.S}
 @add(parts)
 	.global _start
 _start:
-	@expand(write)
+	@put(write)
 	G{exit}
-	@expand(data)
+	@put(data)
 @end(parts)
 ```
 * Das Programm gibt nur die Nachricht aus

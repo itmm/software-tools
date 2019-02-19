@@ -9,9 +9,9 @@
 D{file: copy.S}
 	G{symbols}
 	.data
-	@expand(data)
+	@put(data)
 	.text
-	@expand(code)
+	@put(code)
 @end(file: copy.S)
 ```
 * Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
@@ -22,7 +22,7 @@ D{file: copy.S}
 @def(code)
 	.global _start
 f{_start}:
-	@expand(copy)
+	@put(copy)
 	G{exit}
 @end(code)
 ```
@@ -38,7 +38,7 @@ f{_start}:
 ```
 @def(copy)
 loop:
-	@expand(loop)
+	@put(loop)
 finish:
 @end(copy)
 ```
@@ -80,7 +80,7 @@ A{symbols}
 @def(loop)
 	g{read buffer}
 	G{write buffer}
-	@expand(next)
+	@put(next)
 @end(loop)
 ```
 * Das Programm befüllt den Buffer
