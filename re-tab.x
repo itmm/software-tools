@@ -44,7 +44,7 @@ done:
 
 ```
 @def(spaces)
-	cmp r0, s{$' }
+	cmp r0, @s($' )
 	bne no_space
 
 	mov r6, #1
@@ -81,7 +81,7 @@ no_tab_yet:
 
 ```
 @def(write tab)
-	mov r0, s{$'\t}
+	mov r0, @s($'\t)
 	bl f{putchar}
 	mov r6, #0
 	mov r5, #8
@@ -94,7 +94,7 @@ no_tab_yet:
 ```
 @def(next char)
 	bl f{getchar}
-	cmp r0, s{$' }
+	cmp r0, @s($' )
 	bne no_more_space
 	add r6, r6, #1
 	b space_loop
@@ -113,7 +113,7 @@ no_more_space:
 write_spaces_loop:
 	subs r6, r6, #1
 	blt end_of_write_spaces
-	mov r0, s{$' }
+	mov r0, @s($' )
 	bl f{putchar}
 	b write_spaces_loop
 

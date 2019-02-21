@@ -74,7 +74,7 @@ done:
 
 ```
 @def(space handling)
-	cmp r0, s{$' } 
+	cmp r0, @s($' )
 	movle r6, #0
 	ble loop
 @end(space handling)

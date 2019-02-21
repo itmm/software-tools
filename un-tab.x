@@ -43,11 +43,11 @@ done:
 
 ```
 @def(expand tab)
-	cmp r0, s{$'\t}
+	cmp r0, @s($'\t)
 	bne no_tab
 
 tab_loop:
-	mov r0, s{$' }
+	mov r0, @s($' )
 	bl f{putchar}
 	subs r5, r5, #1
 	bne tab_loop
@@ -70,7 +70,7 @@ no_tab:
 	subs r5, r5, #1
 	moveq r5, #8
 
-	cmp r0, s{$'\n}
+	cmp r0, @s($'\n)
 	moveq r5, #8
 @end(no tab)
 ```

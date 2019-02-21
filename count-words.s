@@ -25,7 +25,7 @@ loop:
 	cmp r0, #0
 	blt done
 	
-	cmp r0, $'  
+	cmp r0, $' 
 	movle r6, #0
 	ble loop
 

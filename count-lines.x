@@ -58,7 +58,7 @@ loop:
 	bl getchar
 	cmp r0, #0
 	blt done
-	cmp r0, s{$'\n}
+	cmp r0, @s($'\n)
 	addeq r5, r5, #1
 	b loop
 done:
