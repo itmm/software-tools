@@ -35,7 +35,7 @@ main:
 
 	@put(setup)
 	@put(loop)
-	G{reply}
+	@Mul(reply)
 
 	mov r0, #0
 	mov pc, r4
@@ -102,7 +102,7 @@ done:
 
 ```
 @def(data entries)
-	G{reply format}
+	@Mul(reply format)
 @end(data entries)
 ```
 * Wieder wird die Ausgabe von `count-chars` übernommen

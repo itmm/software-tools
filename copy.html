@@ -23,7 +23,7 @@ Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
 <div><div>
 <code>
 <span class="macro">@Def(<span class="name">file: copy.S</span>)</span><br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">ymbols</span>}<br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">symbols</span>)</span><br/>
 <span class="in1"></span>.<span class="var">data</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
@@ -43,7 +43,7 @@ Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="fn">_start</span>:<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">copy</span>)</span><br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">xit</span>}<br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">exit</span>)</span><br/>
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -86,7 +86,7 @@ Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">data</span>)</span><br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">uffer</span>}<br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">buffer</span>)</span><br/>
 <span class="macro">@end(<span class="name">data</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -129,8 +129,8 @@ Der File-Descriptor für die Standard-Eingabe ist <code><span class="num">0</spa
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
-<span class="in1"></span><span class="var">g</span>{<span class="var">ead</span> <span class="var">buffer</span>}<br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">rite</span> <span class="var">buffer</span>}<br/>
+<span class="in1"></span><span class="macro">@Put(<span class="name">read buffer</span>)</span><br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">write buffer</span>)</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">next</span>)</span><br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
 </code></div>

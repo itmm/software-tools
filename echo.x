@@ -3,7 +3,7 @@
 
 ```
 @Def(file: echo.S)
-	G{symbols}
+	@Mul(symbols)
 	.data
 	@put(data)
 	.text
@@ -16,7 +16,7 @@
 
 ```
 @def(data)
-	G{buffer}
+	@Mul(buffer)
 @end(data)
 ```
 
@@ -24,11 +24,11 @@
 @def(code)
 	.global _start
 _start:
-	g{init buffer}
+	@Put(init buffer)
 	@put(write arguments)
 	@put(add newline)
-	G{flush buffer}
-	G{exit}
+	@Mul(flush buffer)
+	@Mul(exit)
 @end(code)
 ```
 
@@ -44,7 +44,7 @@ _start:
 ```
 @Def(flush buffer)
 	sub r0, r10, r8
-	G{write buffer}
+	@Mul(write buffer)
 	mov r10, r8
 @end(flush buffer)
 ```
@@ -53,7 +53,7 @@ _start:
 @def(add newline)
 	cmp r10, r9
 	blt space_for_newline
-	G{flush buffer}
+	@Mul(flush buffer)
 space_for_newline:
 	mov r0, $'\n 
 	strb r0, [r10], #1
@@ -93,7 +93,7 @@ no_space:
 @def(add space)
 	cmp r10, r9
 	blt space_for_space
-	G{flush buffer}
+	@Mul(flush buffer)
 space_for_space:
 	mov r0, $' 
 	strb r0, [r10], #1
@@ -109,7 +109,7 @@ arg_loop:
 	beq finish_arg_loop
 	cmp r10, r9
 	blt space_for_arg
-	G{flush buffer}
+	@Mul(flush buffer)
 space_for_arg:
 	strb r14, [r10], #1
 	b arg_loop

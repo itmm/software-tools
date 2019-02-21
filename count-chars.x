@@ -38,7 +38,7 @@ main:
 
 	@put(setup)
 	@put(loop)
-	G{reply}
+	@Mul(reply)
 
 	mov r0, #0
 	mov pc, r4
@@ -77,7 +77,7 @@ done:
 
 ```
 @def(data entries)
-	G{reply format}
+	@Mul(reply format)
 @end(data entries)
 ```
 * Es gibt nur ein Datenelement:

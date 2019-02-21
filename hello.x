@@ -14,7 +14,7 @@
 
 ```
 @def(parts)
-	G{symbols}
+	@Mul(symbols)
 @end(parts)
 ```
 * Am Anfang des Programms stehen Symbol-Definitionen
@@ -26,7 +26,7 @@
 	.global _start
 _start:
 	@put(write)
-	G{exit}
+	@Mul(exit)
 	@put(data)
 @end(parts)
 ```

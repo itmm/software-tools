@@ -34,7 +34,7 @@ Das Programm besteht aus mehreren Teilen
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">parts</span>)</span><br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">ymbols</span>}<br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">symbols</span>)</span><br/>
 <span class="macro">@end(<span class="name">parts</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -51,7 +51,7 @@ und ist so verständlicher
 <span class="in1"></span>.<span class="var">global</span> <span class="var">_start</span><br/>
 <span class="var">_start</span>:<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">write</span>)</span><br/>
-<span class="in1"></span><span class="var">G</span>{<span class="var">xit</span>}<br/>
+<span class="in1"></span><span class="macro">@Mul(<span class="name">exit</span>)</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">data</span>)</span><br/>
 <span class="macro">@end(<span class="name">parts</span>)</span><br/>
 </code></div>

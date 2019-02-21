@@ -32,7 +32,7 @@ loop:
 	cmp r0, #0
 	blt done
 	@put(spaces)
-	G{no tab}
+	@Mul(no tab)
 	b loop
 done:
 @end(loop)

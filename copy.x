@@ -7,7 +7,7 @@
 
 ```
 @Def(file: copy.S)
-	G{symbols}
+	@Mul(symbols)
 	.data
 	@put(data)
 	.text
@@ -23,7 +23,7 @@
 	.global _start
 f{_start}:
 	@put(copy)
-	G{exit}
+	@Mul(exit)
 @end(code)
 ```
 * Das Programm kopiert die gesamte Standard-Eingabe in die
@@ -49,7 +49,7 @@ finish:
 
 ```
 @def(data)
-	G{buffer}
+	@Mul(buffer)
 @end(data)
 ```
 * Im Daten-Segment hat das Programm einen Buffer definiert
@@ -78,8 +78,8 @@ buffer:
 
 ```
 @def(loop)
-	g{read buffer}
-	G{write buffer}
+	@Put(read buffer)
+	@Mul(write buffer)
 	@put(next)
 @end(loop)
 ```
