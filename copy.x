@@ -21,7 +21,7 @@
 ```
 @def(code)
 	.global _start
-f{_start}:
+@f(_start):
 	@put(copy)
 	@Mul(exit)
 @end(code)

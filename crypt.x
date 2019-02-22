@@ -8,7 +8,7 @@
 @Def(file: crypt.s)
 	.text
 	.global main
-f{main}:
+@f(main):
 	stmfd sp!, {lr}
 	@put(crypt)
 	mov r0, #0

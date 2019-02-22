@@ -4,7 +4,7 @@
 @Def(file: un-tab.s)
 	.text
 	.global main
-f{main}:
+@f(main):
 	mov r4, lr
 
 	@put(setup)
@@ -28,7 +28,7 @@ f{main}:
 ```
 @def(loop)
 loop:
-	bl f{getchar}
+	bl @f(getchar)
 	cmp r0, #0
 	blt done
 	@put(expand tab)
@@ -48,7 +48,7 @@ done:
 
 tab_loop:
 	mov r0, @s($' )
-	bl f{putchar}
+	bl @f(putchar)
 	subs r5, r5, #1
 	bne tab_loop
 	mov r5, #8
@@ -65,7 +65,7 @@ no_tab:
 
 ```
 @Def(no tab)
-	bl f{putchar}
+	bl @f(putchar)
 
 	subs r5, r5, #1
 	moveq r5, #8

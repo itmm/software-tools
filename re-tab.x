@@ -4,7 +4,7 @@
 @Def(file: re-tab.s)
 	.text
 	.global main
-f{main}:
+@f(main):
 	mov r4, lr
 
 	@put(setup)
@@ -28,7 +28,7 @@ f{main}:
 ```
 @def(loop)
 loop:
-	bl f{getchar}
+	bl @f(getchar)
 	cmp r0, #0
 	blt done
 	@put(spaces)
@@ -82,7 +82,7 @@ no_tab_yet:
 ```
 @def(write tab)
 	mov r0, @s($'\t)
-	bl f{putchar}
+	bl @f(putchar)
 	mov r6, #0
 	mov r5, #8
 @end(write tab)
@@ -93,7 +93,7 @@ no_tab_yet:
 
 ```
 @def(next char)
-	bl f{getchar}
+	bl @f(getchar)
 	cmp r0, @s($' )
 	bne no_more_space
 	add r6, r6, #1
@@ -114,7 +114,7 @@ write_spaces_loop:
 	subs r6, r6, #1
 	blt end_of_write_spaces
 	mov r0, @s($' )
-	bl f{putchar}
+	bl @f(putchar)
 	b write_spaces_loop
 
 end_of_write_spaces:
