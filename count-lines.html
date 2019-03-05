@@ -60,7 +60,7 @@ Der Code-Block nur die <code><span class="var">main</span></code> Funktion
 <span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <span class="in1"></span><span class="macro">@Mul(<span class="name">reply</span>)</span><br/>
 <br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
 </code></div>
@@ -77,7 +77,7 @@ Und zum Schluss die Summe ausgegeben
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, <span class="keyword">#0</span><br/>
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -89,10 +89,10 @@ Das Zähl-Register wird mit <code><span class="num">0</span></code> initialisier
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
 <span class="var">loop</span>:<br/>
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$'\n</span><br/>
-<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, <span class="keyword">#1</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 <span class="var">done</span>:<br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>

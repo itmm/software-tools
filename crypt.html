@@ -27,7 +27,7 @@ Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv
 <span class="fn">main</span>:<br/>
 <span class="in1"></span><span class="var">stmfd</span> <span class="var">sp</span>!, {<span class="var">lr</span>}<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">crypt</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">ldmfd</span> <span class="var">sp</span>!, {<span class="var">lr</span>}<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">lr</span><br/>
 <span class="macro">@end(<span class="name">file: crypt.s</span>)</span><br/>
@@ -63,7 +63,7 @@ Nach der Schleife wird der Stack wieder zurückgesetzt
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
 <span class="var">loop</span>:<br/>
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">encrypt char</span>)</span><br/>
 <span class="in1"></span><span class="var">bl</span> <span class="var">putchar</span><br/>
@@ -83,15 +83,15 @@ Das verschlüsselte Zeichen muss in <code><span class="var">r0</span></code> abg
 <code>
 <span class="macro">@def(<span class="name">copy args on stack</span>)</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, <span class="var">r1</span><br/>
-<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, <span class="keyword">#4</span><br/>
 <br/>
 <span class="var">args_loop</span>:<br/>
-<span class="in1"></span><span class="var">subs</span> <span class="var">r0</span>, <span class="var">r0</span>, #<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">subs</span> <span class="var">r0</span>, <span class="var">r0</span>, <span class="keyword">#1</span><br/>
 <span class="in1"></span><span class="var">ble</span> <span class="var">end_of_args_loop</span><br/>
 <br/>
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
 <span class="in1"></span><span class="var">stmfd</span> <span class="var">sp</span>!, {<span class="var">r2</span>}<br/>
-<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, <span class="keyword">#4</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">args_loop</span><br/>
 <br/>
 <span class="var">end_of_args_loop</span>:<br/>
@@ -116,7 +116,7 @@ Alle weiteren Argumente werden auf den Stapel geschoben
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">encrypt with key</span>)</span><br/>
 <span class="in1"></span><span class="var">str</span> <span class="var">r2</span>, [<span class="var">r1</span>]<br/>
-<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, #<span class="num">4</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">r1</span>, <span class="keyword">#4</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">crypt_loop</span><br/>
 <br/>
 <span class="var">end_of_crypt_loop</span>:<br/>
@@ -136,8 +136,8 @@ In der Verschlüsselung muss der Zeiger weiter geschoben werden
 <code>
 <span class="macro">@def(<span class="name">encrypt with key</span>)</span><br/>
 <span class="in1"></span><span class="var">ldrb</span> <span class="var">r3</span>, [<span class="var">r2</span>]<br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, #<span class="num">0</span><br/>
-<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, #<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, <span class="keyword">#0</span><br/>
+<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, <span class="keyword">#1</span><br/>
 <span class="in1"></span><span class="var">bne</span> <span class="var">valid_ch</span><br/>
 <br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">reset key</span>)</span><br/>
@@ -163,8 +163,8 @@ Ansonsten wird das aktuelle Zeichen benutzt und der Zeiger weiter
 <span class="in1"></span><span class="var">add</span> <span class="var">r6</span>, <span class="var">r6</span>, <span class="var">r5</span><br/>
 <span class="in1"></span><span class="var">ldr</span> <span class="var">r2</span>, [<span class="var">r6</span>]<br/>
 <span class="in1"></span><span class="var">ldrb</span> <span class="var">r3</span>, [<span class="var">r2</span>]<br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, #<span class="num">0</span><br/>
-<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, #<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r3</span>, <span class="keyword">#0</span><br/>
+<span class="in1"></span><span class="var">addne</span> <span class="var">r2</span>, <span class="keyword">#1</span><br/>
 <span class="macro">@end(<span class="name">reset key</span>)</span><br/>
 </code></div>
 <ul><li>

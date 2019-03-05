@@ -94,8 +94,8 @@ Mit dem Return-Code <code><span class="num">0</span></code> signalisiert das Pro
 <div><div>
 <code>
 <span class="macro">@Def(<span class="name">exit</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">exit</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">exit_success</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, <span class="keyword">#exit</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#exit_success</span><br/>
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
 <span class="macro">@end(<span class="name">exit</span>)</span><br/>
 </code></div>
@@ -155,10 +155,10 @@ Und der offene Datei-Handle für die Standard-Ausgabe ist <code><span class="num
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">write</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, #<span class="var">write</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="var">stdout</span><br/>
-<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">pc</span>, #(<span class="var">msg</span> - . - <span class="num">8</span>)<br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r2</span>, #<span class="var">msg_len</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r7</span>, <span class="keyword">#write</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#stdout</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r1</span>, <span class="var">pc</span>, <span class="fn">#</span>(<span class="var">msg</span> - . - <span class="num">8</span>)<br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r2</span>, <span class="keyword">#msg_len</span><br/>
 <span class="in1"></span><span class="var">swi</span> <span class="num">0</span><br/>
 <span class="macro">@end(<span class="name">write</span>)</span><br/>
 </code></div>

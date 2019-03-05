@@ -4,6 +4,7 @@ CSRCs := $(filter %.s, $(SRCs))
 ASRCs := $(filter %.S, $(SRCs))
 EXEs := $(CSRCs:.s=) $(ASRCs:.S=)
 DOCs := $(Xs:.x=.html)
+GENs := copy
 
 CFLAGS += -Wall
 
@@ -26,4 +27,4 @@ $(SRCs): $(Xs)
 
 clean:
 	@echo '  RM generated files'
-	@rm -f $(SRCs) $(EXEs) $(DOCs) *-out.txt *-exp.txt
+	@rm -f $(SRCs) $(EXEs) $(DOCs) $(GENs) *-out.txt *-exp.txt

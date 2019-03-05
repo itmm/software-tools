@@ -6,13 +6,13 @@
   Ende der Eingabe erreicht ist
 
 ```
-@Def(file: copy.S)
+@Def(| ./asm.sh copy)
 	@Mul(symbols)
 	.data
 	@put(data)
 	.text
 	@put(code)
-@end(file: copy.S)
+@end(| ./asm.sh copy)
 ```
 * Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
   Programm `hello`

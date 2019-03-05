@@ -61,7 +61,7 @@ Und der Code besteht nur aus der <code><span class="var">main</span></code>-Funk
 <span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <span class="in1"></span><span class="macro">@Mul(<span class="name">reply</span>)</span><br/>
 <br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
 </code></div>
@@ -75,8 +75,8 @@ Und die drei Schritte Setup, Zeichen lesen und Ausgabe werden
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, <span class="keyword">#0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, <span class="keyword">#0</span><br/>
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -93,7 +93,7 @@ Diesmal werden zwei Register verwendet
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
 <span class="var">loop</span>:<br/>
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">space handling</span>)</span><br/>
 <span class="in1"></span><span class="macro">@put(<span class="name">word handling</span>)</span><br/>
@@ -113,7 +113,7 @@ Danach werden Wort-Zeichen behandelt
 <code>
 <span class="macro">@def(<span class="name">space handling</span>)</span><br/>
 <span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="str">$' </span><br/>
-<span class="in1"></span><span class="var">movle</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">movle</span> <span class="var">r6</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">ble</span> <span class="var">loop</span><br/>
 <span class="macro">@end(<span class="name">space handling</span>)</span><br/>
 </code></div>
@@ -133,9 +133,9 @@ Durch das <code><span class="var">le</span></code> werden diese beiden Befehle n
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">word handling</span>)</span><br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r6</span>, #<span class="num">0</span><br/>
-<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, #-<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r6</span>, <span class="keyword">#0</span><br/>
+<span class="in1"></span><span class="var">addeq</span> <span class="var">r5</span>, <span class="var">r5</span>, <span class="keyword">#1</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r6</span>, <span class="keyword">#</span>-<span class="num">1</span><br/>
 <span class="macro">@end(<span class="name">word handling</span>)</span><br/>
 </code></div>
 <ul><li>

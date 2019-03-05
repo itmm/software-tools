@@ -66,7 +66,7 @@ Es gibt wieder nur eine einzige Funktion <code><span class="var">main</span></co
 <span class="in1"></span><span class="macro">@put(<span class="name">loop</span>)</span><br/>
 <span class="in1"></span><span class="macro">@Mul(<span class="name">reply</span>)</span><br/>
 <br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">r4</span><br/>
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
 </code></div>
@@ -89,7 +89,7 @@ Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
 <div><div>
 <code>
 <span class="macro">@def(<span class="name">setup</span>)</span><br/>
-<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">mov</span> <span class="var">r5</span>, <span class="keyword">#0</span><br/>
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
 </code></div>
 <ul><li>
@@ -102,9 +102,9 @@ In einem weiteren Register zählt das Programm die Anzahl der gelesenen
 <span class="macro">@def(<span class="name">loop</span>)</span><br/>
 <span class="var">loop</span>:<br/>
 <span class="in1"></span><span class="var">bl</span> <span class="var">getchar</span><br/>
-<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, #<span class="num">0</span><br/>
+<span class="in1"></span><span class="var">cmp</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">blt</span> <span class="var">done</span><br/>
-<span class="in1"></span><span class="var">add</span> <span class="var">r5</span>, <span class="var">r5</span>, #<span class="num">1</span><br/>
+<span class="in1"></span><span class="var">add</span> <span class="var">r5</span>, <span class="var">r5</span>, <span class="keyword">#1</span><br/>
 <span class="in1"></span><span class="var">b</span> <span class="var">loop</span><br/>
 <span class="var">done</span>:<br/>
 <span class="macro">@end(<span class="name">loop</span>)</span><br/>
@@ -131,7 +131,7 @@ Das Format der Antwort
 <code>
 <span class="macro">@Def(<span class="name">reply format</span>)</span><br/>
 <span class="var">reply</span>:<br/>
-<span class="in1"></span>.<span class="var">string</span> <span class="str">"%d\n"</span><br/>
+<span class="in1"></span>.<span class="type">string</span> <span class="str">"%d\n"</span><br/>
 <span class="macro">@end(<span class="name">reply format</span>)</span><br/>
 </code></div>
 <ul><li>
