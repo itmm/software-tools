@@ -2,10 +2,10 @@
 * Zählt alle Zeilen der Eingabe
 
 ```
-@Def(file: count-lines.s)
+@Def(| ./c-asm.sh count-lines)
 	@put(data)
 	@put(code)
-@end(file: count-lines.s)
+@end(| ./c-asm.sh count-lines)
 ```
 * Auch hier besteht das Programm aus einem Datenblock
 * Und einem Code-Block

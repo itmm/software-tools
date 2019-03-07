@@ -1,7 +1,7 @@
 # un-tab - Tabulatoren expandieren
 
 ```
-@Def(file: re-tab.s)
+@Def(| ./c-asm.sh re-tab)
 	.text
 	.global main
 @f(main):
@@ -12,7 +12,7 @@
 
 	mov r0, #0
 	mov pc, r4
-@end(file: re-tab.s)
+@end(| ./c-asm.sh re-tab)
 ```
 * Der ausführbare Bereich besteht nur aus der `main`-Funktion
 * Vor der Schleife werden die Variablen initialisiert

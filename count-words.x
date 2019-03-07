@@ -4,10 +4,10 @@
   Zeilenumbrüche separiert werden
 
 ```
-@Def(file: count-words.s)
+@Def(| ./c-asm.sh count-words)
 	@put(data)
 	@put(code)
-@end(file: count-words.s)
+@end(| ./c-asm.sh count-words)
 ```
 * Wieder eine Aufteilung in Daten und Code
 

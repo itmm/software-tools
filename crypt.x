@@ -5,7 +5,7 @@
   oder-verknüpft
 
 ```
-@Def(file: crypt.s)
+@Def(| ./c-asm.sh crypt)
 	.text
 	.global main
 @f(main):
@@ -14,7 +14,7 @@
 	mov r0, #0
 	ldmfd sp!, {lr}
 	mov pc, lr
-@end(file: crypt.s)
+@end(| ./c-asm.sh crypt)
 ```
 * Der ausführbare Bereich besteht nur aus der `main`-Funktion
 * Diesmal wird die Rücksprung-Adresse auf dem Stack gesichert

@@ -4,10 +4,10 @@
   und Ausgabe zu Hilfe genommen
 
 ```
-@Def(file: count-chars.s)
+@Def(| ./c-asm.sh count-chars)
 	@put(data)
 	@put(code)
-@end(file: count-chars.s)
+@end(| ./c-asm.sh count-chars)
 ```
 * Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
   es noch einen Datenblock

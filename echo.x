@@ -2,13 +2,13 @@
 * Gibt alle Argumente aus
 
 ```
-@Def(file: echo.S)
+@Def(| ./asm.sh echo)
 	@Mul(symbols)
 	.data
 	@put(data)
 	.text
 	@put(code)
-@end(file: echo.S)
+@end(| ./asm.sh echo)
 ```
 * Das Programm besteht wieder aus einem Daten-Segment und einem 
   Code-Segment

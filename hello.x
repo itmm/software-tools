@@ -6,9 +6,9 @@
 * Sondern nur direkte Aufrufe von Kernel-Funktionen
 
 ```
-@Def(file: hello.S)
+@Def(| ./asm.sh hello)
 	@put(parts)
-@end(file: hello.S)
+@end(| ./asm.sh hello)
 ```
 * Das Programm besteht aus mehreren Teilen
 

@@ -21,7 +21,7 @@ Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv
 </div>
 <div><div>
 <code>
-<span class="macro">@Def(<span class="name">file: crypt.s</span>)</span><br/>
+<span class="macro">@Def(<span class="name">| ./c-asm.sh crypt</span>)</span><br/>
 <span class="in1"></span>.<span class="var">text</span><br/>
 <span class="in1"></span>.<span class="var">global</span> <span class="var">main</span><br/>
 <span class="fn">main</span>:<br/>
@@ -30,7 +30,7 @@ Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv
 <span class="in1"></span><span class="var">mov</span> <span class="var">r0</span>, <span class="keyword">#0</span><br/>
 <span class="in1"></span><span class="var">ldmfd</span> <span class="var">sp</span>!, {<span class="var">lr</span>}<br/>
 <span class="in1"></span><span class="var">mov</span> <span class="var">pc</span>, <span class="var">lr</span><br/>
-<span class="macro">@end(<span class="name">file: crypt.s</span>)</span><br/>
+<span class="macro">@end(<span class="name">| ./c-asm.sh crypt</span>)</span><br/>
 </code></div>
 <ul><li>
 Der ausführbare Bereich besteht nur aus der <code><span class="var">main</span></code>-Funktion
