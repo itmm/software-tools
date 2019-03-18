@@ -7,14 +7,14 @@
 <body>
 <h1>count-chars - Zeichen zählen</h1>
 <div class="slides">
-<div><div>
+<div>
+<div>
 <h1>count-chars - Zeichen zählen</h1>
 </div>
 <ul><li>
 Dieses Programm zählt alle Zeichen in der Eingabe
 </li><li>
-Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
-  und Ausgabe zu Hilfe genommen
+Auch hier werden wieder die C-Funktionen für die eingentliche Ein-  und Ausgabe zu Hilfe genommen
 </li></ul>
 </div>
 <div><div>
@@ -25,8 +25,7 @@ Auch hier werden wieder die C-Funktionen für die eingentliche Ein-
 <span class="macro">@end(<span class="name">| ./c-asm.sh count-chars</span>)</span><br/>
 </code></div>
 <ul><li>
-Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt
-  es noch einen Datenblock
+Neben dem Code-Block, der die Maschinensprach-Befehle enthält, gibt  es noch einen Datenblock
 </li><li>
 Dieser enthält eine Zeichenkette zur Ausgabe von Zahlen
 </li></ul>
@@ -71,8 +70,7 @@ Es gibt wieder nur eine einzige Funktion <code><span class="var">main</span></co
 <span class="macro">@end(<span class="name">main</span>)</span><br/>
 </code></div>
 <ul><li>
-<code><span class="var">main</span></code> ist global sichtbar und kann so vom Startup-Code aufgerufen
-  werden
+<code><span class="var">main</span></code> ist global sichtbar und kann so vom Startup-Code aufgerufen  werden
 </li><li>
 Die Rücksprung-Adresse wird wieder in <code><span class="var">r4</span></code> gesichert
 </li><li>
@@ -82,8 +80,7 @@ Zum Schluss wird der Return-Code auf <code><span class="num">0</span></code> ges
 </li><li>
 Und an die ursprüngliche Adresse zurück gesprungen
 </li><li>
-Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
-  und das Ergebnis ausgegeben
+Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet  und das Ergebnis ausgegeben
 </li></ul>
 </div>
 <div><div>
@@ -93,8 +90,7 @@ Dazwischen wird der Zustand initialisiert, die Zeichen abgearbeitet
 <span class="macro">@end(<span class="name">setup</span>)</span><br/>
 </code></div>
 <ul><li>
-In einem weiteren Register zählt das Programm die Anzahl der gelesenen
-  Zeichen
+In einem weiteren Register zählt das Programm die Anzahl der gelesenen  Zeichen
 </li></ul>
 </div>
 <div><div>

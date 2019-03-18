@@ -7,7 +7,8 @@
 <body>
 <h1>crypt</h1>
 <div class="slides">
-<div><div>
+<div>
+<div>
 <h1>crypt</h1>
 </div>
 <ul><li>
@@ -15,8 +16,7 @@ Verschlüsselt die Eingabe
 </li><li>
 Dies Schlüssel werden als Argumente übergeben
 </li><li>
-Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv
-  oder-verknüpft
+Die Eingabe wird mit Zeichen aus jedem Schlüssel exklusiv  oder-verknüpft
 </li></ul>
 </div>
 <div><div>
@@ -50,8 +50,7 @@ Und von dort wieder hergestellt
 <span class="macro">@end(<span class="name">crypt</span>)</span><br/>
 </code></div>
 <ul><li>
-Der Stack wird nach <code><span class="var">r4</span></code> gesichert und Zeiger auf die Argumente auf
-  den Stack gelegt
+Der Stack wird nach <code><span class="var">r4</span></code> gesichert und Zeiger auf die Argumente auf  den Stack gelegt
 </li><li>
 Diese können mit jedem Zeichen der Eingabe weiter geschoben werden
 </li><li>
@@ -147,13 +146,11 @@ In der Verschlüsselung muss der Zeiger weiter geschoben werden
 <span class="macro">@end(<span class="name">encrypt with key</span>)</span><br/>
 </code></div>
 <ul><li>
-Wenn das aktuelle Zeichen ein Null-Byte ist, wird versucht den
-  Schlüssel zurückzusetzen
+Wenn das aktuelle Zeichen ein Null-Byte ist, wird versucht den  Schlüssel zurückzusetzen
 </li><li>
 Und das erste Zeichen zu verwenden
 </li><li>
-Ansonsten wird das aktuelle Zeichen benutzt und der Zeiger weiter
-  geschoben
+Ansonsten wird das aktuelle Zeichen benutzt und der Zeiger weiter  geschoben
 </li></ul>
 </div>
 <div><div>
@@ -168,13 +165,11 @@ Ansonsten wird das aktuelle Zeichen benutzt und der Zeiger weiter
 <span class="macro">@end(<span class="name">reset key</span>)</span><br/>
 </code></div>
 <ul><li>
-Zuerst wird in <code><span class="var">r6</span></code> abgelegt, wie groß der Abstand zum gespeicherten
-  Stapel-Anfang ist
+Zuerst wird in <code><span class="var">r6</span></code> abgelegt, wie groß der Abstand zum gespeicherten  Stapel-Anfang ist
 </li><li>
 Das ist <code><span class="num">4</span></code> für das erste Argument, <code><span class="num">8</span></code> für das zweite und so weiter
 </li><li>
-Dieser Werte kann zum Start der Argument-Liste addiert werden, um das
-  ursprüngliche Argument zu erhalten
+Dieser Werte kann zum Start der Argument-Liste addiert werden, um das  ursprüngliche Argument zu erhalten
 </li><li>
 Denn an <code><span class="num">0</span></code>-ter Stelle steht dort der Programm-Name
 </li><li>

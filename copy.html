@@ -7,17 +7,16 @@
 <body>
 <h1>copy</h1>
 <div class="slides">
-<div><div>
+<div>
+<div>
 <h1>copy</h1>
 </div>
 <ul><li>
 Kopiert Eingabe in Ausgabe
 </li><li>
-Um das Programm einfach zu halten, werden Ein- und Ausgaben über
-  C-Funktionen ausgeführt
+Um das Programm einfach zu halten, werden Ein- und Ausgaben über  C-Funktionen ausgeführt
 </li><li>
-Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
-  Ende der Eingabe erreicht ist
+Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das  Ende der Eingabe erreicht ist
 </li></ul>
 </div>
 <div><div>
@@ -31,8 +30,7 @@ Es wird so lange einzelne Zeichen gelesen und ausgegeben, bis das
 <span class="macro">@end(<span class="name">| ./asm.sh copy</span>)</span><br/>
 </code></div>
 <ul><li>
-Das Programm verwendet und erweitert die Symbol-Tabelle aus dem
-  Programm <code><span class="var">hello</span></code>
+Das Programm verwendet und erweitert die Symbol-Tabelle aus dem  Programm <code><span class="var">hello</span></code>
 </li><li>
 Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 </li></ul>
@@ -47,8 +45,7 @@ Auch dieses Programm besteht aus einem Code- und einem Daten-Segment
 <span class="macro">@end(<span class="name">code</span>)</span><br/>
 </code></div>
 <ul><li>
-Das Programm kopiert die gesamte Standard-Eingabe in die
-  Standard-Ausgabe
+Das Programm kopiert die gesamte Standard-Eingabe in die  Standard-Ausgabe
 </li><li>
 Danach beendet sich das Programm
 </li></ul>
@@ -56,12 +53,12 @@ Danach beendet sich das Programm
 </div>
 <h1>Kopierschleife</h1>
 <div class="slides">
-<div><div>
+<div>
+<div>
 <h1>Kopierschleife</h1>
 </div>
 <ul><li>
-In der Kopierschleife wird ein Block an Daten geladen und danach
-  geschrieben
+In der Kopierschleife wird ein Block an Daten geladen und danach  geschrieben
 </li><li>
 Das Programm kopiert die gesamte Eingabe blockweise
 </li></ul>
@@ -77,8 +74,7 @@ Das Programm kopiert die gesamte Eingabe blockweise
 <ul><li>
 Das <code><span class="var">loop</span></code>-Fragment implementiert die eigentliche Schleife
 </li><li>
-Nachdem das Programm eine Iteration verarbeitet hat, springt es
-  wieder zu <code><span class="var">loop</span></code>
+Nachdem das Programm eine Iteration verarbeitet hat, springt es  wieder zu <code><span class="var">loop</span></code>
 </li><li>
 Wenn das Programm nichts mehr lesen kann, wird zum Ende gesprungen
 </li></ul>
@@ -139,8 +135,7 @@ Das Programm befüllt den Buffer
 </li><li>
 und schreibt ihn dann aus
 </li><li>
-Wenn das Programm beim Lesen das Ende erkennt, springt es nach
-  <code><span class="var">finish</span></code>
+Wenn das Programm beim Lesen das Ende erkennt, springt es nach  <code><span class="var">finish</span></code>
 </li><li>
 Danach durchläuft das Programm die Schleife erneut
 </li></ul>
@@ -167,8 +162,7 @@ Das Programm liest Bytes in den Buffer
 <span class="macro">@end(<span class="name">read buffer</span>)</span><br/>
 </code></div>
 <ul><li>
-Wenn das Ergebnis kleiner oder gleich <code><span class="num">0</span></code> ist, dann ist das Ende
-  erreicht
+Wenn das Ergebnis kleiner oder gleich <code><span class="num">0</span></code> ist, dann ist das Ende  erreicht
 </li></ul>
 </div>
 <div><div>
@@ -178,9 +172,7 @@ Wenn das Ergebnis kleiner oder gleich <code><span class="num">0</span></code> is
 <span class="macro">@end(<span class="name">next</span>)</span><br/>
 </code></div>
 <ul><li>
-Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
-  das Programm am Ende der Schleife zur nächsten Iteration zurück
-  springen
+Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann  das Programm am Ende der Schleife zur nächsten Iteration zurück  springen
 </li></ul>
 </div>
 <div><div>
@@ -196,8 +188,7 @@ Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
 <ul><li>
 Das Programm schreibt die befüllten Bytes des Buffers
 </li><li>
-Die Anzahl der Bytes sichert es als neue Länge bevor das Register
-  mit dem File-Descriptor überschrieben wird
+Die Anzahl der Bytes sichert es als neue Länge bevor das Register  mit dem File-Descriptor überschrieben wird
 </li></ul>
 </div>
 </body>
