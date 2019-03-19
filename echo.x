@@ -10,7 +10,7 @@
 	@put(code)
 @end(| ./asm.sh echo)
 ```
-* Das Programm besteht wieder aus einem Daten-Segment und einem 
+* Das Programm besteht wieder aus einem Daten-Segment und einem
   Code-Segment
 * Die golbale Symbol-Liste wird wiederverwendet
 

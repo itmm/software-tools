@@ -78,4 +78,3 @@ no_tab:
 * Und der Zähler reduziert
 * Wenn er auf `0` fällt wird er neu initialisiert
 * Oder wenn ein Zeilenumbruch gelesen wurde
-

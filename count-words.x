@@ -83,8 +83,8 @@ done:
 * Wenn es kleiner oder gleich ist, dann ist es nicht Teil eines Wortes
 * Die Wort-Markierung wird gelöscht
 * Und die Schleife neu durchlaufen
-* Durch das `le` werden diese beiden Befehle nur für Zeichen ausgeführt,
-  die nicht Teil eines Wortes sind
+* Durch das `le` werden diese beiden Befehle nur für Zeichen
+  ausgeführt,  die nicht Teil eines Wortes sind
 
 ```
 @def(word handling)
@@ -107,4 +107,3 @@ done:
 ```
 * Wieder wird die Ausgabe von `count-chars` übernommen
 * Das verwendete Format muss eingebunden werden
-

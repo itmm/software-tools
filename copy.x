@@ -114,8 +114,8 @@ buffer:
 	b loop
 @end(next)
 ```
-* Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann
-  das Programm am Ende der Schleife zur nächsten Iteration zurück
+* Nachdem nun die Abbruchbedingung der Schleife im Code steht, kann  das
+  Programm am Ende der Schleife zur nächsten Iteration zurück
   springen
 
 ```
@@ -130,4 +130,3 @@ buffer:
 * Das Programm schreibt die befüllten Bytes des Buffers
 * Die Anzahl der Bytes sichert es als neue Länge bevor das Register
   mit dem File-Descriptor überschrieben wird
-

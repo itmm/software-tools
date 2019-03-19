@@ -128,4 +128,3 @@ valid_ch:
 * Denn an `0`-ter Stelle steht dort der Programm-Name
 * Das erste Zeichen wird verwendet
 * Und der Zähler erhöht, wenn es nicht schon das letzte Zeichen ist
-

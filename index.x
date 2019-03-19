@@ -1,6 +1,6 @@
 # Software Tools in GNU ARM Assembler
-* Implementierung der Software Tools von Kernighan und Plauger in
-  GNU ARM Assembler
+* Implementierung der Software Tools von Kernighan und Plauger in  GNU
+  ARM Assembler
 * Start-Projekt, um strukturierte Maschinensprache zu entwickeln
 * Laufen auf Raspberry Pi 3
 
@@ -63,4 +63,3 @@
 ```
 @inc(crypt.x)
 ```
-

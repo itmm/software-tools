@@ -99,4 +99,3 @@ msg:
 * Das zweite Argument ist der Start der Bytes, die ausgegeben werden
 * Dies wird relativ zum Programm-Counter berechnet
 * Das dritte Argument ist die Anzahl der Bytes
-

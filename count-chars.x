@@ -58,8 +58,8 @@ main:
 	mov r5, #0
 @end(setup)
 ```
-* In einem weiteren Register zählt das Programm die Anzahl der gelesenen
-  Zeichen
+* In einem weiteren Register zählt das Programm die Anzahl der
+  gelesenen  Zeichen
 
 ```
 @def(loop)
@@ -103,4 +103,3 @@ reply:
 ```
 * Für `printf` wird das Format im Register `r0` erwartet
 * Und die Zahl im Register `r1`
-

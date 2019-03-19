@@ -124,4 +124,3 @@ end_of_write_spaces:
 * In `r0` steht das nächste Zeichen
 * Es wird in `r7` gesichert, da `putchar` das Register verändert
 * Es werden `r6` viele Leerzeichen ausgegeben
-

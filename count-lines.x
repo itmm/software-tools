@@ -74,6 +74,5 @@ done:
 @end(data entries)
 ```
 * Die Ausgabe ist aus dem Programm `count-chars` entnommen
-* Dessen Format für die `printf`-Funktion muss hier ebenfalls integriert
-  werden
-
+* Dessen Format für die `printf`-Funktion muss hier ebenfalls
+  integriert  werden
